@@ -10,3 +10,4 @@ images
 global
 RDataRDS
 _book
+R/cover.R
