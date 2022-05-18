@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 2 Sample Metadata | Getting Started with Microbiome Data Analysis in R</title>
+<meta name="author" content="Teresia Mrema-Buza, A Microbiome Computational Scientist and Owner of the Complex Data Insights, LLC, USA">
+<meta name="description" content="2.1 What is metadata?  Metadata is a set of data that describes and provides information about other data. It is commonly defined as data about data. Sample metadata described in this book refers...">
+<meta name="generator" content="bookdown 0.25 with bs4_book()">
+<meta property="og:title" content="Chapter 2 Sample Metadata | Getting Started with Microbiome Data Analysis in R">
+<meta property="og:type" content="book">
+<meta property="og:description" content="2.1 What is metadata?  Metadata is a set of data that describes and provides information about other data. It is commonly defined as data about data. Sample metadata described in this book refers...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 2 Sample Metadata | Getting Started with Microbiome Data Analysis in R">
+<meta name="twitter:description" content="2.1 What is metadata?  Metadata is a set of data that describes and provides information about other data. It is commonly defined as data about data. Sample metadata described in this book refers...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><link href="libs/_Sen-0.4.1/font.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM%20Mono&amp;display=swap" rel="stylesheet">
+<link href="libs/_Bitter-0.4.1/font.css" rel="stylesheet">
+<script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><script src="libs/viz-1.8.2/viz.js"></script><link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet">
+<script src="libs/grViz-binding-1.0.9/grViz.js"></script><link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet">
+<script src="libs/leaflet-1.3.1/leaflet.js"></script><link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet">
+<script src="libs/proj4-2.6.2/proj4.min.js"></script><script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script><link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet">
+<script src="libs/leaflet-binding-2.1.1/leaflet.js"></script><script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script><script src="libs/leaflet-providers-plugin-2.1.1/leaflet-providers-plugin.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="Integrated solutions for better results">Getting Started with Microbiome Data Analysis in R</a>:
+        <small class="text-muted">Integrated solutions for better results</small>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Getting Started with Microbiome Data Analysis in R</a></li>
+<li class="book-part">GETTING STARTED</li>
+<li><a class="" href="basic-software.html"><span class="header-section-number">1</span> Basic Software</a></li>
+<li><a class="active" href="sample-metadata.html"><span class="header-section-number">2</span> Sample Metadata</a></li>
+<li><a class="" href="sequencing-data.html"><span class="header-section-number">3</span> Sequencing Data</a></li>
+<li><a class="" href="preprocessing-tools.html"><span class="header-section-number">4</span> Read Processing Tools</a></li>
+<li><a class="" href="bioinformatics-pipelines.html"><span class="header-section-number">5</span> Bioinformatics Pipelines</a></li>
+<li class="book-part">APPENDIX</li>
+<li><a class="" href="saved-data-objects.html"><span class="header-section-number">A</span> Saved Data Objects</a></li>
+<li><a class="" href="software-and-packages-used.html"><span class="header-section-number">B</span> Software and Packages Used</a></li>
+<li><a class="" href="references.html">References</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/tmbuza/microbiome-part1">View book source <i class="fas fa-air-freshener"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="sample-metadata" class="section level1" number="2">
+<h1>
+<span class="header-section-number">2</span> Sample Metadata<a class="anchor" aria-label="anchor" href="#sample-metadata"><i class="fas fa-link"></i></a>
+</h1>
+<div id="what-is-metadata" class="section level2" number="2.1">
+<h2>
+<span class="header-section-number">2.1</span> What is metadata?<a class="anchor" aria-label="anchor" href="#what-is-metadata"><i class="fas fa-link"></i></a>
+</h2>
+<ul>
+<li>
+<b>Metadata</b> is a set of data that describes and provides information about other data. It is commonly defined as <strong>data about data</strong>.</li>
+<li>
+<strong>Sample metadata</strong> described in this book refers to the description and context of the individual sample collected for a specific microbiome study.</li>
+</ul>
+</div>
+<div id="metadata-structure" class="section level2" number="2.2">
+<h2>
+<span class="header-section-number">2.2</span> Metadata structure<a class="anchor" aria-label="anchor" href="#metadata-structure"><i class="fas fa-link"></i></a>
+</h2>
+<ul>
+<li>Metadata collected at different stages (Figure 1) are typically organized in an Excel or Google spreadsheet where:
+<ul>
+<li>The metadata table columns represent the properties of the samples.</li>
+<li>The metadata table rows contain information associated with the samples.</li>
+<li>Typically, the first column of sample metadata is Sample ID, which designates the key associated to individual sample</li>
+<li>Sampl ID must be unique.</li>
+</ul>
+</li>
+</ul>
+</div>
+<div id="embedded-metadata" class="section level2" number="2.3">
+<h2>
+<span class="header-section-number">2.3</span> Embedded metadata<a class="anchor" aria-label="anchor" href="#embedded-metadata"><i class="fas fa-link"></i></a>
+</h2>
+<ul>
+<li>In most cases, you will find the metadata detached from the experimental data.</li>
+<li>Embedded metadata integrates the experimental data especially for graphics.</li>
+<li>Major microbiome analysis platforms require sample metadata, commonly referred to as <strong>mapping file</strong> when performing downstream analysis.</li>
+</ul>
+<p><br></p>
+</div>
+<div id="metadata-profiling" class="section level2" number="2.4">
+<h2>
+<span class="header-section-number">2.4</span> Metadata profiling<a class="anchor" aria-label="anchor" href="#metadata-profiling"><i class="fas fa-link"></i></a>
+</h2>
+<div class="tmbinfo">
+<p>
+Typically, after sequencing the microbiome DNA, the investigators are encouraged to deposit the sequence reads in a public repository. The Sequence Read Archive (SRA) is currently the best bioinformatics database for read information. The good thing about SRA is that it integrates data from the NCBI, the European Bioinformatics Institute (EBI), and the DNA Data Bank of Japan (DDBJ).
+</p>
+</div>
+<p>Here we profile metadata associated with the bushmeat microbiome project number <a href="https://www.ncbi.nlm.nih.gov/sra?linkname=bioproject_sra_all&amp;from_uid=477349">PRJNA477349</a>.</p>
+<ul>
+<li>We will demonstrate:
+<ul>
+<li>how to download metadata from the NCBI-SRA archive.</li>
+<li>how to read the metadata file into R environment.</li>
+<li>how to create a tidy dataframe.</li>
+<li>how to select and filter desired metadata</li>
+</ul>
+</li>
+</ul>
+<div id="downloading-metadata-using-the-ncbi-sra-run-selector" class="section level3" number="2.4.1">
+<h3>
+<span class="header-section-number">2.4.1</span> Downloading metadata using the NCBI-SRA run selector<a class="anchor" aria-label="anchor" href="#downloading-metadata-using-the-ncbi-sra-run-selector"><i class="fas fa-link"></i></a>
+</h3>
+<div class="inline-figure">
+<img src="images/sra_run_selector.png" style="width:100.0%" alt="Screen shot of SRA Run Selector for metadata associated with the NCBI-SRA project number PRJNA477349">
+### Reading metadata into R environment</div>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/source.html">source</a></span><span class="op">(</span><span class="st">"R/common.R"</span><span class="op">)</span>
+<span class="va">sraruntable</span> <span class="op">&lt;-</span> <span class="fu">read_delim</span><span class="op">(</span><span class="st">"data/SraRunTable.txt"</span>, show_col_types <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="how-many-rows-and-columns" class="section level3" number="2.4.2">
+<h3>
+<span class="header-section-number">2.4.2</span> How many rows and columns<a class="anchor" aria-label="anchor" href="#how-many-rows-and-columns"><i class="fas fa-link"></i></a>
+</h3>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"There are"</span>, <span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">sraruntable</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, <span class="st">"rows and"</span>, <span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">sraruntable</span><span class="op">)</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>,<span class="st">"columns in this metadata"</span><span class="op">)</span></code></pre></div>
+<pre><code>[1] "There are 133 rows and 34 columns in this metadata"</code></pre>
+</div>
+<div id="column-names" class="section level3" number="2.4.3">
+<h3>
+<span class="header-section-number">2.4.3</span> Column names<a class="anchor" aria-label="anchor" href="#column-names"><i class="fas fa-link"></i></a>
+</h3>
+<p>Getting a clear knowledge about the variables associated with a sample metadata can help in filtering the most important features.</p>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">sraruntable</span><span class="op">)</span></code></pre></div>
+<pre><code> [1] "Run"                            "Assay Type"                    
+ [3] "AvgSpotLen"                     "Bases"                         
+ [5] "BioProject"                     "BioSample"                     
+ [7] "BioSampleModel"                 "Bytes"                         
+ [9] "Center Name"                    "Collection_date"               
+[11] "Consent"                        "DATASTORE filetype"            
+[13] "DATASTORE provider"             "DATASTORE region"              
+[15] "Experiment"                     "geo_loc_name_country"          
+[17] "geo_loc_name_country_continent" "geo_loc_name"                  
+[19] "Host"                           "Instrument"                    
+[21] "Isolate"                        "Lat_Lon"                       
+[23] "Library Name"                   "LibraryLayout"                 
+[25] "LibrarySelection"               "LibrarySource"                 
+[27] "Organism"                       "Platform"                      
+[29] "ReleaseDate"                    "Sample Name"                   
+[31] "SRA Study"                      "collection_season"             
+[33] "sample_condition"               "SampleCode"                    </code></pre>
+<blockquote>
+<p>Note that a fraction of the columns may be needed to answer all the research questions.</p>
+</blockquote>
+</div>
+</div>
+<div id="tidying-and-subsetting-metadata" class="section level2" number="2.5">
+<h2>
+<span class="header-section-number">2.5</span> Tidying and subsetting metadata<a class="anchor" aria-label="anchor" href="#tidying-and-subsetting-metadata"><i class="fas fa-link"></i></a>
+</h2>
+<ul>
+<li>We want the sample metadata to include a few desired variables.</li>
+<li>In this example we desire to include sample collection point i.e latitude and longitude.</li>
+<li>We will drop row with <code>NA</code> in location column.</li>
+<li>It is a good habit to rename, modify or replace longer column names with meaningful names.</li>
+<li>We will select a few columns to create a desired metadata for downstream analyses.</li>
+<li>Saving the tidy metadata file in <code>RDS or RData</code> format will preserve a compressed file.</li>
+</ul>
+<div id="getting-s-desired-metadata" class="section level3" number="2.5.1">
+<h3>
+<span class="header-section-number">2.5.1</span> Getting s desired metadata<a class="anchor" aria-label="anchor" href="#getting-s-desired-metadata"><i class="fas fa-link"></i></a>
+</h3>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">metadata</span> <span class="op">&lt;-</span> <span class="va">sraruntable</span> <span class="op">%&gt;%</span>  
+  <span class="fu">rename_all</span><span class="op">(</span><span class="va">tolower</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu">rename</span><span class="op">(</span>sample_id <span class="op">=</span> <span class="va">run</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu">drop_na</span><span class="op">(</span><span class="va">lat_lon</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu">mutate</span><span class="op">(</span>
+    geo_loc_name <span class="op">=</span> <span class="fu">str_replace_all</span><span class="op">(</span><span class="va">geo_loc_name</span>, <span class="st">"Tanzania: "</span>, <span class="st">""</span><span class="op">)</span>,
+    geo_loc_name <span class="op">=</span> <span class="fu">str_replace_all</span><span class="op">(</span><span class="va">geo_loc_name</span>, <span class="st">"The Greater Serengeti Ecosystem"</span>, <span class="st">"Serengeti"</span><span class="op">)</span>,
+    geo_loc_name <span class="op">=</span> <span class="fu">str_replace_all</span><span class="op">(</span><span class="va">geo_loc_name</span>, <span class="st">" Ecosystem"</span>, <span class="st">""</span><span class="op">)</span>,
+    isolate <span class="op">=</span> <span class="fu">str_replace_all</span><span class="op">(</span><span class="va">isolate</span>, <span class="st">"_\\d*$"</span>, <span class="st">""</span><span class="op">)</span>,
+    lat_lon <span class="op">=</span> <span class="fu">str_replace_all</span><span class="op">(</span><span class="va">lat_lon</span>, <span class="st">" E$"</span>, <span class="st">""</span><span class="op">)</span>,
+    latitude <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="fu">str_replace_all</span><span class="op">(</span><span class="va">lat_lon</span>, <span class="st">" S.*"</span>, <span class="st">""</span><span class="op">)</span><span class="op">)</span> <span class="op">*</span> <span class="op">-</span><span class="fl">1</span>,
+    longitude <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="fu">str_replace_all</span><span class="op">(</span><span class="va">lat_lon</span>, <span class="st">".*S "</span>, <span class="st">""</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu">rename</span><span class="op">(</span>ecosystem <span class="op">=</span> <span class="va">geo_loc_name</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">rename</span><span class="op">(</span>description <span class="op">=</span> <span class="va">host</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu">mutate</span><span class="op">(</span>bases <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">bases</span><span class="op">/</span><span class="fl">1E6</span>, digits <span class="op">=</span> <span class="fl">0</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu">select</span><span class="op">(</span><span class="va">sample_id</span>, <span class="va">ecosystem</span>, <span class="va">isolate</span>, <span class="va">latitude</span>, <span class="va">longitude</span>, milionbases<span class="op">=</span><span class="va">bases</span>, <span class="va">description</span><span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">saveRDS</a></span><span class="op">(</span><span class="va">metadata</span>, <span class="st">"RDataRDS/metadata.rds"</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="compact-structure-of-the-tidy-metadata" class="section level3" number="2.5.2">
+<h3>
+<span class="header-section-number">2.5.2</span> Compact structure of the tidy metadata<a class="anchor" aria-label="anchor" href="#compact-structure-of-the-tidy-metadata"><i class="fas fa-link"></i></a>
+</h3>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">metadata</span><span class="op">)</span></code></pre></div>
+<pre><code>tibble [133 × 7] (S3: tbl_df/tbl/data.frame)
+ $ sample_id  : chr [1:133] "SRR10245277" "SRR10245278" "SRR10245279" "SRR10245280" ...
+ $ ecosystem  : chr [1:133] "Serengeti" "Serengeti" "Serengeti" "Selous" ...
+ $ isolate    : chr [1:133] "Wildebeest" "Pig" "Eland" "Gazelle" ...
+ $ latitude   : num [1:133] -2.15 -2.15 -2.15 -9 -9 ...
+ $ longitude  : num [1:133] 34.7 34.7 34.7 37.5 37.5 ...
+ $ milionbases: num [1:133] 189 261 155 156 105 188 157 122 128 240 ...
+ $ description: chr [1:133] "Connochaetes taurinus" "Suidae" "Tragelaphus oryx" "Gazella" ...</code></pre>
+</div>
+<div id="any-missing-values" class="section level3" number="2.5.3">
+<h3>
+<span class="header-section-number">2.5.3</span> Any missing values?<a class="anchor" aria-label="anchor" href="#any-missing-values"><i class="fas fa-link"></i></a>
+</h3>
+<p>The <code><a href="https://rdrr.io/pkg/funModeling/man/df_status.html">df_status()</a></code> from funModeling R package is excellent for quick inspecting the variables, missing values, data type and total unique variables.</p>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://livebook.datascienceheroes.com">funModeling</a></span><span class="op">)</span>
+<span class="va">metadata</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">readRDS</a></span><span class="op">(</span><span class="st">"RDataRDS/metadata.rds"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/funModeling/man/df_status.html">df_status</a></span><span class="op">(</span><span class="va">metadata</span><span class="op">)</span></code></pre></div>
+<pre><code>     variable q_zeros p_zeros q_na p_na q_inf p_inf      type unique
+1   sample_id       0       0    0    0     0     0 character    133
+2   ecosystem       0       0    0    0     0     0 character      3
+3     isolate       0       0    0    0     0     0 character     18
+4    latitude       0       0    0    0     0     0   numeric     22
+5   longitude       0       0    0    0     0     0   numeric     23
+6 milionbases       0       0    0    0     0     0   numeric     93
+7 description       0       0    0    0     0     0 character     20</code></pre>
+<p>Key: <strong>q_zeros</strong>: quantity of missing data; <strong>p_zeros</strong>: percentage of missing data, <strong>q_na</strong>: quantity of NA; <strong>p_na</strong>: percentage of NA, <strong>q_inf</strong>: quantity of infinite values; <strong>p_inf</strong>: percentage of infinity values, <strong>type</strong>: factor, character, integer or numeric; <strong>unique</strong>: levels of the variable.</p>
+</div>
+<div id="graphical-view-of-variable-frequency" class="section level3" number="2.5.4">
+<h3>
+<span class="header-section-number">2.5.4</span> Graphical view of variable frequency<a class="anchor" aria-label="anchor" href="#graphical-view-of-variable-frequency"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li>We can also use the <code><a href="https://rdrr.io/pkg/funModeling/man/freq.html">freq()</a></code> function from the funModeling R package to get a clear view of the variables and unique counts.</li>
+</ul>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/funModeling/man/freq.html">freq</a></span><span class="op">(</span><span class="va">metadata</span>, input <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"ecosystem"</span>, <span class="st">"isolate"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="figures/var_freq-1.png" width="70%" style="display: block; margin: auto;"></div>
+<pre><code>  ecosystem frequency percentage cumulative_perc
+1 Serengeti        77      57.89           57.89
+2    Selous        32      24.06           81.95
+3     Ruaha        24      18.05          100.00</code></pre>
+<div class="inline-figure"><img src="figures/var_freq-2.png" width="70%" style="display: block; margin: auto;"></div>
+<pre><code>      isolate frequency percentage cumulative_perc
+1  Wildebeest        43      32.33           32.33
+2      Dikdik        22      16.54           48.87
+3     Buffalo        20      15.04           63.91
+4      Cattle         9       6.77           70.68
+5      Impala         8       6.02           76.70
+6       Zebra         6       4.51           81.21
+7       Eland         5       3.76           84.97
+8     Gazelle         3       2.26           87.23
+9        Hare         3       2.26           89.49
+10        Pig         3       2.26           91.75
+11       Topi         3       2.26           94.01
+12      Hippo         2       1.50           95.51
+13   Cane Rat         1       0.75           96.26
+14    Giraffe         1       0.75           97.01
+15  Porcupine         1       0.75           97.76
+16     Rabbit         1       0.75           98.51
+17      Sheep         1       0.75           99.26
+18    Warthog         1       0.75          100.00</code></pre>
+<pre><code>[1] "Variables processed: ecosystem, isolate"</code></pre>
+<p><br></p>
+</div>
+<div id="which-samples-have-the-smallest-number-of-reads" class="section level3" number="2.5.5">
+<h3>
+<span class="header-section-number">2.5.5</span> Which samples have the smallest number of reads?<a class="anchor" aria-label="anchor" href="#which-samples-have-the-smallest-number-of-reads"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li>We want to use samples with smaller number of reads for computation reasons.</li>
+<li>Read depth is proportional to the number of bases (renamed to milionbases)</li>
+<li>Let’s explore read depth across isolates and ecosystem.</li>
+<li>We will sort the bases in ascending order.</li>
+</ul>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">metadata</span> <span class="op">%&gt;%</span> 
+  <span class="fu">select</span><span class="op">(</span><span class="va">isolate</span>, <span class="va">ecosystem</span>, <span class="va">milionbases</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu">arrange</span><span class="op">(</span><span class="va">milionbases</span><span class="op">)</span></code></pre></div>
+<pre><code># A tibble: 133 × 3
+   isolate    ecosystem milionbases
+   &lt;chr&gt;      &lt;chr&gt;           &lt;dbl&gt;
+ 1 Zebra      Serengeti           4
+ 2 Warthog    Serengeti           8
+ 3 Buffalo    Serengeti           9
+ 4 Buffalo    Serengeti          11
+ 5 Wildebeest Serengeti          11
+ 6 Wildebeest Serengeti          13
+ 7 Wildebeest Serengeti          16
+ 8 Wildebeest Serengeti          16
+ 9 Buffalo    Serengeti          19
+10 Buffalo    Serengeti          19
+# … with 123 more rows</code></pre>
+<blockquote>
+<p>Looks like the top samples with smallest number of reads are from same ecosystem.</p>
+</blockquote>
+<p><br></p>
+</div>
+<div id="distribution-across-common-variable" class="section level3" number="2.5.6">
+<h3>
+<span class="header-section-number">2.5.6</span> Distribution across common variable<a class="anchor" aria-label="anchor" href="#distribution-across-common-variable"><i class="fas fa-link"></i></a>
+</h3>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">metadata</span> <span class="op">%&gt;%</span> 
+  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">isolate</span>, y <span class="op">=</span> <span class="va">milionbases</span>, fill <span class="op">=</span> <span class="va">ecosystem</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">facet_grid</span><span class="op">(</span><span class="op">~</span> <span class="va">ecosystem</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">geom_col</span><span class="op">(</span>position <span class="op">=</span> <span class="st">"dodge"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">coord_flip</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Animal Name"</span>, y <span class="op">=</span> <span class="st">"Bases (milion)"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">theme_light</span><span class="op">(</span><span class="op">)</span>  <span class="op">+</span> 
+  <span class="va">nolegend</span> <span class="op">+</span>
+  <span class="va">facetsize12</span> <span class="op">+</span>
+ <span class="va">axislayout</span></code></pre></div>
+<div class="inline-figure"><img src="figures/distrib-1.png" width="70%" style="display: block; margin: auto;"></div>
+<p><br></p>
+</div>
+</div>
+<div id="mapping-sample-collection-points" class="section level2" number="2.6">
+<h2>
+<span class="header-section-number">2.6</span> Mapping sample collection points<a class="anchor" aria-label="anchor" href="#mapping-sample-collection-points"><i class="fas fa-link"></i></a>
+</h2>
+<p>Sometimes it may be good to pinpoint sample collection point on geographical map for better feature comparison. The <a href="https://rstudio.github.io/leaflet/"><code>leaflet</code></a> R package can do a great job in dropping a pin on the corresponding coordinate.</p>
+<p>Let’s give it a try.</p>
+<blockquote>
+<p>Note that samples collected on the same coordinate will overlap. You can zoom in-out to expand or minimize the map. Mouse over the pin to see the variable label.</p>
+</blockquote>
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rstudio.github.io/leaflet/">leaflet</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/bhaskarvk/leaflet.esri">leaflet.esri</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rstudio/leaflet.providers">leaflet.providers</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/bhaskarvk/leaflet.extras">leaflet.extras</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-datatable.com">data.table</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
+
+<span class="va">minLat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">metadata</span><span class="op">$</span><span class="va">latitude</span><span class="op">)</span> <span class="op">-</span> <span class="fl">0.1</span>
+<span class="va">minLon</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">metadata</span><span class="op">$</span><span class="va">longitude</span><span class="op">)</span> <span class="op">+</span> <span class="fl">0.1</span>
+<span class="va">maxLat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">metadata</span><span class="op">$</span><span class="va">latitude</span><span class="op">)</span> <span class="op">+</span> <span class="fl">0.1</span>
+<span class="va">maxLon</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">metadata</span><span class="op">$</span><span class="va">longitude</span><span class="op">)</span> <span class="op">+</span> <span class="fl">0.1</span>
+
+<span class="va">metadata</span> <span class="op"><a href="https://rdrr.io/pkg/leaflet/man/leaflet-imports.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/leaflet.html">leaflet</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/leaflet/man/leaflet-imports.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/addProviderTiles.html">addProviderTiles</a></span><span class="op">(</span><span class="va">providers</span><span class="op">$</span><span class="va">Esri.NatGeoWorldMap</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/leaflet/man/leaflet-imports.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/map-methods.html">fitBounds</a></span><span class="op">(</span><span class="va">minLon</span>, <span class="va">minLat</span>, <span class="va">maxLon</span>, <span class="va">maxLat</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/leaflet/man/leaflet-imports.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/map-layers.html">addMarkers</a></span><span class="op">(</span>lng <span class="op">=</span> <span class="op">~</span><span class="va">longitude</span>, lat <span class="op">=</span> <span class="op">~</span><span class="va">latitude</span>, popup <span class="op">=</span> <span class="op">~</span><span class="va">isolate</span>, label <span class="op">=</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">isolate</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/leaflet/man/leaflet-imports.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/map-layers.html">addCircles</a></span><span class="op">(</span>color<span class="op">=</span><span class="st">"magenta"</span>, radius <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log1p</a></span><span class="op">(</span><span class="va">metadata</span><span class="op">$</span><span class="va">longitude</span><span class="op">)</span> <span class="op">*</span> <span class="fl">10</span><span class="op">)</span></code></pre></div>
+<div id="htmlwidget-7ae80df7065cf1b66fd5" style="width:70%;height:470.4px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-7ae80df7065cf1b66fd5">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addProviderTiles","args":["Esri.NatGeoWorldMap",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]},{"method":"addMarkers","args":[[-2.154,-2.154,-2.154,-9,-9,-9,-9,-9,-9,-2.154,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-2.154,-9,-9,-9,-7.386,-7.386,-7.386,-7.386,-7.386,-2.154,-2.154,-2.154,-2.154,-2.154,-2.154,-2.154,-9,-9,-9,-9,-9,-9,-2.154,-9,-9,-9,-9,-7.386,-7.386,-7.386,-7.386,-7.386,-7.386,-9,-7.386,-7.386,-7.386,-7.386,-7.386,-7.386,-7.386,-7.386,-7.386,-7.386,-9,-7.386,-7.386,-2.154,-2.154,-2.154,-2.154,-2.154,-2.154,-2.154,-2.154,-9,-7.386,-2.0209,-1.7898,-1.7898,-2.0028,-1.8791,-2.0209,-2.0028,-2.0189,-2.0471,-1.8791,-2.0509,-2.0509,-2.0509,-2.0509,-1.8791,-2.0318,-2.0318,-2.0318,-2.0531,-2.0318,-1.5201,-2.0509,-2.0509,-1.9871,-1.9986,-2.0318,-2.0318,-1.5201,-1.7898,-2.0509,-2.0028,-2.0028,-1.9798,-1.8791,-1.9939,-1.9986,-2.0751,-1.9291,-2.0751,-2.0509,-2.0509,-2.0509,-2.0509,-2.0509,-1.98,-2.0189,-2.0318,-1.4197,-2.0189,-2.0509,-1.8791,-1.9871,-1.4451,-1.9871,-1.7898,-1.5201],[34.6857,34.6857,34.6857,37.5,37.5,37.5,37.5,37.5,37.5,34.6857,37.5,37.5,37.5,37.5,37.5,37.5,37.5,37.5,37.5,37.5,34.6857,37.5,37.5,37.5,34.9563,34.9563,34.9563,34.9563,34.9563,34.6857,34.6857,34.6857,34.6857,34.6857,34.6857,34.6857,37.5,37.5,37.5,37.5,37.5,37.5,34.6857,37.5,37.5,37.5,37.5,34.9563,34.9563,34.9563,34.9563,34.9563,34.9563,37.5,34.9563,34.9563,34.9563,34.9563,34.9563,34.9563,34.9563,34.9563,34.9563,34.9563,37.5,34.9563,34.9563,34.6857,34.6857,34.6857,34.6857,34.6857,34.6857,34.6857,34.6857,37.5,34.9563,34.4479,34.7548,34.7548,34.563,34.7836,34.4479,34.563,34.4164,34.467,34.7836,33.963,33.963,33.963,33.963,34.7836,33.8599,33.8599,33.8599,33.9437,33.8599,34.6631,33.963,33.963,34.105,34.3729,33.8598,33.8599,34.6631,34.7548,33.963,34.563,34.563,34.1463,34.7836,34.5189,34.3729,34.4984,34.2791,34.4984,33.963,33.963,33.963,33.963,33.963,34.146,34.4164,33.8599,34.7475,34.4164,33.963,34.7836,34.105,34.7022,34.105,34.7548,34.6631],null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},["Wildebeest","Pig","Eland","Gazelle","Dikdik","Zebra","Buffalo","Pig","Zebra","Wildebeest","Hippo","Impala","Impala","Hare","Buffalo","Cane Rat","Pig","Gazelle","Zebra","Cattle","Wildebeest","Impala","Impala","Impala","Wildebeest","Dikdik","Dikdik","Impala","Dikdik","Wildebeest","Topi","Zebra","Wildebeest","Wildebeest","Wildebeest","Impala","Hare","Cattle","Cattle","Cattle","Cattle","Cattle","Zebra","Cattle","Cattle","Cattle","Wildebeest","Dikdik","Dikdik","Dikdik","Dikdik","Dikdik","Dikdik","Impala","Dikdik","Dikdik","Dikdik","Dikdik","Dikdik","Dikdik","Dikdik","Dikdik","Dikdik","Buffalo","Hippo","Dikdik","Dikdik","Wildebeest","Wildebeest","Wildebeest","Buffalo","Wildebeest","Wildebeest","Wildebeest","Wildebeest","Hare","Dikdik","Buffalo","Wildebeest","Wildebeest","Wildebeest","Wildebeest","Buffalo","Giraffe","Eland","Eland","Eland","Buffalo","Wildebeest","Buffalo","Buffalo","Wildebeest","Buffalo","Buffalo","Buffalo","Porcupine","Wildebeest","Wildebeest","Gazelle","Rabbit","Wildebeest","Buffalo","Zebra","Buffalo","Wildebeest","Wildebeest","Wildebeest","Wildebeest","Wildebeest","Topi","Wildebeest","Wildebeest","Sheep","Wildebeest","Wildebeest","Wildebeest","Buffalo","Eland","Wildebeest","Wildebeest","Topi","Wildebeest","Buffalo","Wildebeest","Wildebeest","Buffalo","Buffalo","Buffalo","Buffalo","Warthog","Wildebeest","Wildebeest","Wildebeest"],null,null,null,["Wildebeest","Pig","Eland","Gazelle","Dikdik","Zebra","Buffalo","Pig","Zebra","Wildebeest","Hippo","Impala","Impala","Hare","Buffalo","Cane Rat","Pig","Gazelle","Zebra","Cattle","Wildebeest","Impala","Impala","Impala","Wildebeest","Dikdik","Dikdik","Impala","Dikdik","Wildebeest","Topi","Zebra","Wildebeest","Wildebeest","Wildebeest","Impala","Hare","Cattle","Cattle","Cattle","Cattle","Cattle","Zebra","Cattle","Cattle","Cattle","Wildebeest","Dikdik","Dikdik","Dikdik","Dikdik","Dikdik","Dikdik","Impala","Dikdik","Dikdik","Dikdik","Dikdik","Dikdik","Dikdik","Dikdik","Dikdik","Dikdik","Buffalo","Hippo","Dikdik","Dikdik","Wildebeest","Wildebeest","Wildebeest","Buffalo","Wildebeest","Wildebeest","Wildebeest","Wildebeest","Hare","Dikdik","Buffalo","Wildebeest","Wildebeest","Wildebeest","Wildebeest","Buffalo","Giraffe","Eland","Eland","Eland","Buffalo","Wildebeest","Buffalo","Buffalo","Wildebeest","Buffalo","Buffalo","Buffalo","Porcupine","Wildebeest","Wildebeest","Gazelle","Rabbit","Wildebeest","Buffalo","Zebra","Buffalo","Wildebeest","Wildebeest","Wildebeest","Wildebeest","Wildebeest","Topi","Wildebeest","Wildebeest","Sheep","Wildebeest","Wildebeest","Wildebeest","Buffalo","Eland","Wildebeest","Wildebeest","Topi","Wildebeest","Buffalo","Wildebeest","Wildebeest","Buffalo","Buffalo","Buffalo","Buffalo","Warthog","Wildebeest","Wildebeest","Wildebeest"],{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addCircles","args":[[-2.154,-2.154,-2.154,-9,-9,-9,-9,-9,-9,-2.154,-9,-9,-9,-9,-9,-9,-9,-9,-9,-9,-2.154,-9,-9,-9,-7.386,-7.386,-7.386,-7.386,-7.386,-2.154,-2.154,-2.154,-2.154,-2.154,-2.154,-2.154,-9,-9,-9,-9,-9,-9,-2.154,-9,-9,-9,-9,-7.386,-7.386,-7.386,-7.386,-7.386,-7.386,-9,-7.386,-7.386,-7.386,-7.386,-7.386,-7.386,-7.386,-7.386,-7.386,-7.386,-9,-7.386,-7.386,-2.154,-2.154,-2.154,-2.154,-2.154,-2.154,-2.154,-2.154,-9,-7.386,-2.0209,-1.7898,-1.7898,-2.0028,-1.8791,-2.0209,-2.0028,-2.0189,-2.0471,-1.8791,-2.0509,-2.0509,-2.0509,-2.0509,-1.8791,-2.0318,-2.0318,-2.0318,-2.0531,-2.0318,-1.5201,-2.0509,-2.0509,-1.9871,-1.9986,-2.0318,-2.0318,-1.5201,-1.7898,-2.0509,-2.0028,-2.0028,-1.9798,-1.8791,-1.9939,-1.9986,-2.0751,-1.9291,-2.0751,-2.0509,-2.0509,-2.0509,-2.0509,-2.0509,-1.98,-2.0189,-2.0318,-1.4197,-2.0189,-2.0509,-1.8791,-1.9871,-1.4451,-1.9871,-1.7898,-1.5201],[34.6857,34.6857,34.6857,37.5,37.5,37.5,37.5,37.5,37.5,34.6857,37.5,37.5,37.5,37.5,37.5,37.5,37.5,37.5,37.5,37.5,34.6857,37.5,37.5,37.5,34.9563,34.9563,34.9563,34.9563,34.9563,34.6857,34.6857,34.6857,34.6857,34.6857,34.6857,34.6857,37.5,37.5,37.5,37.5,37.5,37.5,34.6857,37.5,37.5,37.5,37.5,34.9563,34.9563,34.9563,34.9563,34.9563,34.9563,37.5,34.9563,34.9563,34.9563,34.9563,34.9563,34.9563,34.9563,34.9563,34.9563,34.9563,37.5,34.9563,34.9563,34.6857,34.6857,34.6857,34.6857,34.6857,34.6857,34.6857,34.6857,37.5,34.9563,34.4479,34.7548,34.7548,34.563,34.7836,34.4479,34.563,34.4164,34.467,34.7836,33.963,33.963,33.963,33.963,34.7836,33.8599,33.8599,33.8599,33.9437,33.8599,34.6631,33.963,33.963,34.105,34.3729,33.8598,33.8599,34.6631,34.7548,33.963,34.563,34.563,34.1463,34.7836,34.5189,34.3729,34.4984,34.2791,34.4984,33.963,33.963,33.963,33.963,33.963,34.146,34.4164,33.8599,34.7475,34.4164,33.963,34.7836,34.105,34.7022,34.105,34.7548,34.6631],[35.7475004831583,35.7475004831583,35.7475004831583,36.5065824129374,36.5065824129374,36.5065824129374,36.5065824129374,36.5065824129374,36.5065824129374,35.7475004831583,36.5065824129374,36.5065824129374,36.5065824129374,36.5065824129374,36.5065824129374,36.5065824129374,36.5065824129374,36.5065824129374,36.5065824129374,36.5065824129374,35.7475004831583,36.5065824129374,36.5065824129374,36.5065824129374,35.8230431220733,35.8230431220733,35.8230431220733,35.8230431220733,35.8230431220733,35.7475004831583,35.7475004831583,35.7475004831583,35.7475004831583,35.7475004831583,35.7475004831583,35.7475004831583,36.5065824129374,36.5065824129374,36.5065824129374,36.5065824129374,36.5065824129374,36.5065824129374,35.7475004831583,36.5065824129374,36.5065824129374,36.5065824129374,36.5065824129374,35.8230431220733,35.8230431220733,35.8230431220733,35.8230431220733,35.8230431220733,35.8230431220733,36.5065824129374,35.8230431220733,35.8230431220733,35.8230431220733,35.8230431220733,35.8230431220733,35.8230431220733,35.8230431220733,35.8230431220733,35.8230431220733,35.8230431220733,36.5065824129374,35.8230431220733,35.8230431220733,35.7475004831583,35.7475004831583,35.7475004831583,35.7475004831583,35.7475004831583,35.7475004831583,35.7475004831583,35.7475004831583,36.5065824129374,35.8230431220733,35.6806401285958,35.7668452586145,35.7668452586145,35.7130577154167,35.7748968788788,35.6806401285958,35.7130577154167,35.6717498969631,35.6860268669151,35.7748968788788,35.5429035946264,35.5429035946264,35.5429035946264,35.5429035946264,35.7748968788788,35.5133717147043,35.5133717147043,35.5133717147043,35.5373819492075,35.5133717147043,35.7411654079346,35.5429035946264,35.5429035946264,35.5834357046921,35.659459902437,35.5133430284076,35.5133717147043,35.7411654079346,35.7668452586145,35.5429035946264,35.7130577154167,35.7130577154167,35.5951934955822,35.7748968788788,35.7006494917597,35.659459902437,35.6948762504313,35.6329072060912,35.6948762504313,35.5429035946264,35.5429035946264,35.5429035946264,35.5429035946264,35.5429035946264,35.5951081377265,35.6717498969631,35.5133717147043,35.7648033662487,35.6717498969631,35.5429035946264,35.7748968788788,35.5834357046921,35.7521231153673,35.5834357046921,35.7668452586145,35.7411654079346],null,null,{"interactive":true,"className":"","stroke":true,"color":"magenta","weight":5,"opacity":0.5,"fill":true,"fillColor":"magenta","fillOpacity":0.2},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null,null]}],"fitBounds":[-9.1,33.9598,-1.3197,37.6,[]],"limits":{"lat":[-9,-1.4197],"lng":[33.8598,37.5]}},"evals":[],"jsHooks":[]}</script><p><br></p>
+<div id="example-of-screenshots-from-zoom-in-out" class="section level3" number="2.6.1">
+<h3>
+<span class="header-section-number">2.6.1</span> Example of screenshots from zoom in-out<a class="anchor" aria-label="anchor" href="#example-of-screenshots-from-zoom-in-out"><i class="fas fa-link"></i></a>
+</h3>
+<div class="figure">
+<img src="images/loc_on_world_map.png" style="width:60.0%" alt=""><p class="caption">World map: Geographical location of sample collection points.</p>
+</div>
+<p><br></p>
+<div class="figure">
+<img src="images/loc_on_continent_map.png" style="width:60.0%" alt=""><p class="caption">Continent map: Geographical location of sample collection points.</p>
+</div>
+<p><br></p>
+<div class="figure">
+<img src="images/loc_on_country_map.png" style="width:60.0%" alt=""><p class="caption">Country map: Geographical location of sample collection points.</p>
+</div>
+<p><br></p>
+<div class="figure">
+<img src="images/loc_on_site_map.png" style="width:60.0%" alt=""><p class="caption">Site map: Geographical location of sample collection points.</p>
+</div>
+
+</div>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="basic-software.html"><span class="header-section-number">1</span> Basic Software</a></div>
+<div class="next"><a href="sequencing-data.html"><span class="header-section-number">3</span> Sequencing Data</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#sample-metadata"><span class="header-section-number">2</span> Sample Metadata</a></li>
+<li><a class="nav-link" href="#what-is-metadata"><span class="header-section-number">2.1</span> What is metadata?</a></li>
+<li><a class="nav-link" href="#metadata-structure"><span class="header-section-number">2.2</span> Metadata structure</a></li>
+<li><a class="nav-link" href="#embedded-metadata"><span class="header-section-number">2.3</span> Embedded metadata</a></li>
+<li>
+<a class="nav-link" href="#metadata-profiling"><span class="header-section-number">2.4</span> Metadata profiling</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#downloading-metadata-using-the-ncbi-sra-run-selector"><span class="header-section-number">2.4.1</span> Downloading metadata using the NCBI-SRA run selector</a></li>
+<li><a class="nav-link" href="#how-many-rows-and-columns"><span class="header-section-number">2.4.2</span> How many rows and columns</a></li>
+<li><a class="nav-link" href="#column-names"><span class="header-section-number">2.4.3</span> Column names</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#tidying-and-subsetting-metadata"><span class="header-section-number">2.5</span> Tidying and subsetting metadata</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#getting-s-desired-metadata"><span class="header-section-number">2.5.1</span> Getting s desired metadata</a></li>
+<li><a class="nav-link" href="#compact-structure-of-the-tidy-metadata"><span class="header-section-number">2.5.2</span> Compact structure of the tidy metadata</a></li>
+<li><a class="nav-link" href="#any-missing-values"><span class="header-section-number">2.5.3</span> Any missing values?</a></li>
+<li><a class="nav-link" href="#graphical-view-of-variable-frequency"><span class="header-section-number">2.5.4</span> Graphical view of variable frequency</a></li>
+<li><a class="nav-link" href="#which-samples-have-the-smallest-number-of-reads"><span class="header-section-number">2.5.5</span> Which samples have the smallest number of reads?</a></li>
+<li><a class="nav-link" href="#distribution-across-common-variable"><span class="header-section-number">2.5.6</span> Distribution across common variable</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#mapping-sample-collection-points"><span class="header-section-number">2.6</span> Mapping sample collection points</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#example-of-screenshots-from-zoom-in-out"><span class="header-section-number">2.6.1</span> Example of screenshots from zoom in-out</a></li></ul>
+</li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/tmbuza/microbiome-part1/blob/main/01b_samplemetadata.Rmd">View source <i class="fas fa-air-freshener"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/tmbuza/microbiome-part1/edit/main/01b_samplemetadata.Rmd">Edit this page <i class="fas fa-air-freshener"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Getting Started with Microbiome Data Analysis in R</strong>: Integrated solutions for better results" was written by Teresia Mrema-Buza, A Microbiome Computational Scientist and Owner of the Complex Data Insights, LLC, USA. It was last built on 2022-05-17.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer>
+</body>
+</html>

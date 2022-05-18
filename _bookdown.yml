@@ -1,0 +1,17 @@
+language:
+  ui:
+    chapter_name: "Chapter "
+delete_merged_file: false
+
+book_filename: "microbiome-part1"
+output_dir: gh-pages
+rmd_files: [
+"index.Rmd",
+"01a_basic_software.Rmd",
+"01b_samplemetadata.Rmd",
+"01c_sequencing_data.Rmd",
+"01d_read_preprocessing_tools.Rmd",
+"01e_bioinfo_pipelines.Rmd",
+"99_appendix.Rmd",
+"999-references.Rmd"
+]

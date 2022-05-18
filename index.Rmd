@@ -1,0 +1,156 @@
+---
+title: "Getting Started with Microbiome Data Analysis in R"
+subtitle: "Integrated solutions for better results"
+author: "Teresia Mrema-Buza, A Microbiome Computational Scientist and Owner of the Complex Data Insights, LLC, USA"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+knit: bookdown::render_book
+output:
+  bookdown::bs4_book:
+    includes:
+      in_header:
+        
+  bookdown::gitbook:
+    includes:
+      in_header: header.html
+    config: 
+      toc:
+       collapse: 
+      search: yes
+      fontsettings:
+        size: 2
+    split_by: section
+    split_bib: no
+    df_print: paged
+    number_sections: true
+    css:
+    - css/style.css
+    - style.css
+    
+  html_document:
+    code_folding: hide
+    
+  bookdown::html_document2:
+    code_folding: hide
+    
+  bookdown::pdf_book:
+    config:
+      toc = true
+      toc_depth = 2
+      number_sections = true
+      fig_caption = true
+      keep_tex = no
+      pandoc_args = null
+      toc_unnumbered = no
+      toc_appendix = no
+      toc_bib = no 
+      quote_footer = null
+      highlight_bw = true
+      latex_engine = xelatex
+      df_print = kable
+      base_format = rmarkdown::pdf_document
+  includes:
+    in_header: 
+    - latex/header.tex
+    - latex/preamble.tex
+documentclass: book
+classoption: openany #remove empty pages in pdf doc
+bibliography:
+- library/book.bib
+- library/packages.bib
+- library/microbiome.bib
+- library/software.bib 
+citation_package:
+- natbib
+- biblatex
+- amsplain
+colorlinks: true
+css:
+- css/style.css
+always_allow_html: true
+fig_caption: true
+fontsize: 12pt
+geometry: margin=1in
+indent: false
+keep_tex: true
+link-citations: true
+mainfont: Times New Roman
+biblio-style: apalike
+spacing: double
+header-includes: 
+- \usepackage{setspace}
+- \newpage
+- \newenvironment{tmbinfo}[0]{}{}
+- \renewenvironment{tmbinfo}[0]{}{}
+- \newenvironment{tmbalert}[0]{}{}
+- \renewenvironment{tmbalert}[0]{}{}
+- \newenvironment{tmbshare}[0]{}{}
+- \renewenvironment{tmbshare}[0]{}{}
+description: |
+  This is a practical user's guide for **Systematic Microbiome Data Analysis in R**. The guide provides integrated and highly curated solutions for achieving better results.
+---
+
+
+```{r pkgbiblib, include=FALSE}
+knitr::write_bib(c(
+  .packages(), 'base','bookdown','rmarkdown','tidyverse','shiny','vegan','data.table, dendextend, robCompositions, microbiome, ALDEx2, caret, rms, phyloseq'
+), 'library/packages.bib')
+```
+
+```{r setup, include=FALSE}
+source(file = "R/common.R")
+```
+
+# Getting Started with Microbiome Data Analysis in R {-#frontpage}
+
+```{r include=FALSE}
+library(DiagrammeR)
+library(DiagrammeRsvg)
+
+graph <- DiagrammeR::grViz("
+digraph {
+graph [layout = dot, rankdir = TD]
+
+node [
+shape = box, 
+style = filled, 
+fillcolor = white, 
+fontname = Helvetica,
+penwidth = 2.0] 
+
+edge [arrowhead = diamond]
+
+A [label = 'Getting Started', fillcolor = white, penwidth = 5.0]
+B [label = 'Basic Requirements']
+C [label = 'Sample Metadata']
+D [label = 'Software']
+E [label = 'Sequencing Data']
+F [label = 'Data Analysis Tools']
+G [label = 'Preprocessing Tools']
+H [label = 'Bioinformatics Pipelines']
+
+{A}  -> B
+{B}  -> C
+{B}  -> D
+{B}  -> E
+{D}  -> F
+{D}  -> G
+{D}  -> H
+
+}", height = 400, width = 600)
+
+### Visualize the graph object
+graph
+```
+
+
+<a href=""><img src="images/microbpart1.png" alt="Book cover" width="100%" style="padding: 50px 0px 100px 0px; float: right;"/></a>
+
+<h2>Quick Glimpse</h2>
+
+Microbial communities play a vital role in human health and disease. Investigating the role of microbial communities in health and disease requires a thorough knowledge of the analytical process. We provide step-by-step analytics guides to enable the user to understand the microbial composition present in a given sample. This is <b>PART 1</b> of the microbiome data analysis workflows intended to help users getting started. A code for part 1 is available at a public [GitHub repository](https://github.com/tmbuza/microbiome-part1/). You can request a consulting service by contacting the developer using <a href="https://complexdatainsights.com/contact-us">this contact form</a>. 
+
+
+<h2>License</h2>
+
+![](images/CCbyNCND.png){ width=100px } The online version of this book is free and licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>

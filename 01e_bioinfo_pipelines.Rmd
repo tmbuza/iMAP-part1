@@ -1,0 +1,28 @@
+# Bioinformatics Pipelines {#bioinformatics-pipelines}
+
+## Pipeline for analyzing 16S rRNA amplicon data {#amplicon-analysis}
+Below are few most popular platforms that offers free lightweight and reproducible tutorials for analyzing 16S rRNA gene sequencing data.
+
+| Pipeline | Description | Tutorial | Install |
+|-----------|-----------------|----------------------|
+| Mothur |  An open-source software package for bioinformatics data processing including 16S rRNA gene sequencing data | [Basic Tutorial](https://mothur.org/wiki/miseq_sop/)  |  [Download](https://github.com/mothur/mothur/releases/) |
+| QIIME2 | An open-source microbiome analysis package including 16S rRNA gene sequencing data | [Tutorials](https://docs.qiime2.org/2022.2/tutorials/)  | [Installation](https://docs.qiime2.org/2022.2/install/) |
+| Nephele | Open, accessible high performmance cloud platform platform for microbial bioinformatics. Integrates Mothur, QIIME2, DADA2 and Biobakery | [Some tutorials](https://nephele.niaid.nih.gov/user_guide/) | [User Guide](https://nephele.niaid.nih.gov/user_guide/)  |
+||||
+
+> Make sure to check for latest instructions online.
+
+
+## Pipelines for analyzing metagenomics data {#metagenomics-analysis}
+
+The installation instruction of various pipeline is found [here](https://github.com/biobakery/biobakery/wiki). See the table below for specific software.
+
+| Pipeline | Description | Tutorial |
+|-----------|-----------------|----------------------|
+| Keaddata | Quality controll on metagenomic sequencing data | [Tutorial](https://github.com/biobakery/biobakery/wiki/kneaddata)  |
+| MetaPhlAn | Taxonomic Profiling from metagenomic shotgun sequencing data| [Tutorial](https://github.com/biobakery/biobakery/wiki/metaphlan3)  |
+| HumanN  | Functional Profiling from metagenomic sequencing data | [Tutorial](https://github.com/biobakery/biobakery/wiki/humann3)  |
+||| 
+
+> Make sure to check for latest instructions online.
+

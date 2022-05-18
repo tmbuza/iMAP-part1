@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 3 Sequencing Data | Getting Started with Microbiome Data Analysis in R</title>
+<meta name="author" content="Teresia Mrema-Buza, A Microbiome Computational Scientist and Owner of the Complex Data Insights, LLC, USA">
+<meta name="description" content="Sequencing data may include: Research projects From Sequence Read Archive (SRA) In silico simulation  3.1 From research projects The most common sources of sequencing data are from research...">
+<meta name="generator" content="bookdown 0.25 with bs4_book()">
+<meta property="og:title" content="Chapter 3 Sequencing Data | Getting Started with Microbiome Data Analysis in R">
+<meta property="og:type" content="book">
+<meta property="og:description" content="Sequencing data may include: Research projects From Sequence Read Archive (SRA) In silico simulation  3.1 From research projects The most common sources of sequencing data are from research...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 3 Sequencing Data | Getting Started with Microbiome Data Analysis in R">
+<meta name="twitter:description" content="Sequencing data may include: Research projects From Sequence Read Archive (SRA) In silico simulation  3.1 From research projects The most common sources of sequencing data are from research...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><link href="libs/_Sen-0.4.1/font.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM%20Mono&amp;display=swap" rel="stylesheet">
+<link href="libs/_Bitter-0.4.1/font.css" rel="stylesheet">
+<script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><script src="libs/viz-1.8.2/viz.js"></script><link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet">
+<script src="libs/grViz-binding-1.0.9/grViz.js"></script><link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet">
+<script src="libs/leaflet-1.3.1/leaflet.js"></script><link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet">
+<script src="libs/proj4-2.6.2/proj4.min.js"></script><script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script><link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet">
+<script src="libs/leaflet-binding-2.1.1/leaflet.js"></script><script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script><script src="libs/leaflet-providers-plugin-2.1.1/leaflet-providers-plugin.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="Integrated solutions for better results">Getting Started with Microbiome Data Analysis in R</a>:
+        <small class="text-muted">Integrated solutions for better results</small>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Getting Started with Microbiome Data Analysis in R</a></li>
+<li class="book-part">GETTING STARTED</li>
+<li><a class="" href="basic-software.html"><span class="header-section-number">1</span> Basic Software</a></li>
+<li><a class="" href="sample-metadata.html"><span class="header-section-number">2</span> Sample Metadata</a></li>
+<li><a class="active" href="sequencing-data.html"><span class="header-section-number">3</span> Sequencing Data</a></li>
+<li><a class="" href="preprocessing-tools.html"><span class="header-section-number">4</span> Read Processing Tools</a></li>
+<li><a class="" href="bioinformatics-pipelines.html"><span class="header-section-number">5</span> Bioinformatics Pipelines</a></li>
+<li class="book-part">APPENDIX</li>
+<li><a class="" href="saved-data-objects.html"><span class="header-section-number">A</span> Saved Data Objects</a></li>
+<li><a class="" href="software-and-packages-used.html"><span class="header-section-number">B</span> Software and Packages Used</a></li>
+<li><a class="" href="references.html">References</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/tmbuza/microbiome-part1">View book source <i class="fas fa-air-freshener"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="sequencing-data" class="section level1" number="3">
+<h1>
+<span class="header-section-number">3</span> Sequencing Data<a class="anchor" aria-label="anchor" href="#sequencing-data"><i class="fas fa-link"></i></a>
+</h1>
+<p>Sequencing data may include:</p>
+<ol style="list-style-type: decimal">
+<li>Research projects</li>
+<li>From Sequence Read Archive (SRA)</li>
+<li>In <code>silico</code> simulation</li>
+</ol>
+<div id="from-research-projects" class="section level2" number="3.1">
+<h2>
+<span class="header-section-number">3.1</span> From research projects<a class="anchor" aria-label="anchor" href="#from-research-projects"><i class="fas fa-link"></i></a>
+</h2>
+<p>The most common sources of sequencing data are from research projects. There are multiple sequencing platforms out there. For example, Illumina sequencing company uses technologies capable of profiling entire microbial communities present in environmental. Example include:</p>
+<ul>
+<li>16S rRNA Sequencing</li>
+<li>Shotgun Metagenomic Sequencing</li>
+</ul>
+</div>
+<div id="from-archives-such-as-ncbi-sra" class="section level2" number="3.2">
+<h2>
+<span class="header-section-number">3.2</span> From archives such as NCBI-SRA<a class="anchor" aria-label="anchor" href="#from-archives-such-as-ncbi-sra"><i class="fas fa-link"></i></a>
+</h2>
+<p>The NCBI Sequence Read Archive (SRA) stores sequencing data from the next generation sequencing platforms. Users can download data from the SRA archive. Below are minimal steps to do that:</p>
+<div id="install-sra-toolkit-on-mac-os." class="section level3" number="3.2.1">
+<h3>
+<span class="header-section-number">3.2.1</span> Install SRA Toolkit on Mac OS.<a class="anchor" aria-label="anchor" href="#install-sra-toolkit-on-mac-os."><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li>Navigate to where you want to install the tools, preferably the home directory.</li>
+<li>For more information click <a href="https://github.com/ncbi/sra-tools/wiki/02.-Installing-SRA-Toolkit">here</a>.</li>
+</ul>
+<pre><code>curl -LO  https://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/3.0.0/sratoolkit.3.0.0-mac64.tar.gz
+tar -xf sratoolkit.3.0.0-mac64.tar.gz
+
+export PATH=$HOME/sratoolkit.3.0.0-mac64/bin/:$PATH
+</code></pre>
+</div>
+<div id="create-a-cache-root-directory" class="section level3" number="3.2.2">
+<h3>
+<span class="header-section-number">3.2.2</span> Create a cache root directory<a class="anchor" aria-label="anchor" href="#create-a-cache-root-directory"><i class="fas fa-link"></i></a>
+</h3>
+<pre><code>mkdir -p ~/ncbi
+echo '/repository/user/main/public/root = "/Volumes/SeagateTMB/SRA/BUSHMEAT/SRR7450"' &gt; ~/ncbi/user-settings.mkfg</code></pre>
+</div>
+<div id="confirm-sra-toolkit-configuration" class="section level3" number="3.2.3">
+<h3>
+<span class="header-section-number">3.2.3</span> Confirm sra toolkit configuration<a class="anchor" aria-label="anchor" href="#confirm-sra-toolkit-configuration"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li>Command below will display a blue colored dialog.</li>
+<li>Use tab or click <code>c</code> to navigate to cache tab.</li>
+<li>Review the configuration then save <code>s</code> and exit <code>x</code>.</li>
+</ul>
+<pre><code>vdb-config -i</code></pre>
+<div class="figure">
+<img src="images/sra_config_cache.png" style="width:100.0%" alt=""><p class="caption">A screenshot of the SRA configuration.</p>
+</div>
+<p>For more information click <a href="https://github.com/ncbi/sra-tools/wiki/03.-Quick-Toolkit-Configuration">here</a>.</p>
+<p><br></p>
+</div>
+<div id="start-downloading-the-fastq-files" class="section level3" number="3.2.4">
+<h3>
+<span class="header-section-number">3.2.4</span> Start downloading the fastq files<a class="anchor" aria-label="anchor" href="#start-downloading-the-fastq-files"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li>Be sure that the <code>fasterq-dump</code> is in the path.</li>
+<li>Type <code>which fasterq-dump</code> to confirm if is in the path.</li>
+<li>Use the absolute path like <code>~/sratoolkit.3.0.0-mac64/bin/fasterq-dump</code> if not already exported to the path.</li>
+<li>The example below uses absolute path to execute the <code>fasterq-dump</code> command.</li>
+</ul>
+<blockquote>
+<p>Notice that the output and temporary files are placed in an external drive mounted to the computer.</p>
+</blockquote>
+<blockquote>
+<p>The sratoolkit folder is in the home directory.</p>
+</blockquote>
+<pre><code>for (( i = 706; i &lt;= 761; i++ ))
+    do
+        time ~/sratoolkit.3.0.0-mac64/bin/fasterq-dump SRR7450$i \
+        -O /Volumes/SeagateTMB/SRA/BUSHMEAT/SRR7450/ \
+        -t /Volumes/SeagateTMB/SRA/BUSHMEAT/SRR7450/tmpfiles \
+        --threads 4 \
+        --split-3;
+    done</code></pre>
+</div>
+</div>
+<div id="simmulated-insilico-sequencing-data" class="section level2" number="3.3">
+<h2>
+<span class="header-section-number">3.3</span> Simmulated insilico sequencing data<a class="anchor" aria-label="anchor" href="#simmulated-insilico-sequencing-data"><i class="fas fa-link"></i></a>
+</h2>
+<ul>
+<li>Most insilico data is used for testing software before applying real data.</li>
+<li>How to generate insilico data can be challenging.</li>
+<li>Below is a demo for generating NovaSeq, MiSeq and HiSeq insilico sequencing data.</li>
+</ul>
+<div id="demo1-novaseq-metagenomics-data" class="section level3" number="3.3.1">
+<h3>
+<span class="header-section-number">3.3.1</span> Demo1: NovaSeq metagenomics data<a class="anchor" aria-label="anchor" href="#demo1-novaseq-metagenomics-data"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li>Five novaseq paired fastq files</li>
+</ul>
+<pre><code>iss generate \
+    --ncbi bacteria viruses archaea -U 15 0 2 \
+    --coverage lognormal \
+    --n_reads 0.12M \
+    --model novaseq \annual report
+    --output data/novaseq_01 \
+    --compress \
+    --seed 1
+iss generate \
+    --ncbi bacteria viruses archaea -U 15 1 1 \
+    --coverage lognormal \
+    --n_reads 0.11M \
+    --model novaseq \
+    --output data/novaseq_02 \
+    --compress \
+    --seed 2
+iss generate \
+    --ncbi bacteria viruses archaea -U 10 0 0 \
+    --coverage lognormal \
+    --n_reads 0.1M \
+    --model novaseq \
+    --output data/novaseq_03 \
+    --compress \
+    --seed 3
+iss generate \
+    --ncbi bacteria viruses archaea -U 10 0 0 \
+    --coverage lognormal \
+    --n_reads 0.1M \
+    --model novaseq \
+    --output data/novaseq_04 \
+    --compress \
+    --seed 4
+iss generate \
+    --ncbi bacteria viruses archaea -U 10 0 0 \
+    --coverage lognormal \
+    --n_reads 0.1M \
+    --model novaseq \
+    --output data/novaseq_05 \
+    --compress \
+    --seed 5
+    </code></pre>
+</div>
+<div id="demo2-miseq-metagenomics-data" class="section level3" number="3.3.2">
+<h3>
+<span class="header-section-number">3.3.2</span> Demo2: MiSeq metagenomics data<a class="anchor" aria-label="anchor" href="#demo2-miseq-metagenomics-data"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li>Five miseq paired fastq files</li>
+</ul>
+<pre><code>iss generate \
+    --ncbi bacteria viruses archaea -U 10 0 2 \
+    --coverage lognormal \
+    --n_reads 0.12M \
+    --model miseq \
+    --output data/miseq_01 \
+    --compress \
+    --seed 16
+iss generate \
+    --ncbi bacteria viruses archaea -U 15 1 1 \
+    --coverage lognormal \
+    --n_reads 0.11M \
+    --model miseq \
+    --output data/miseq_02 \
+    --compress \
+    --seed 17
+iss generate \
+    --ncbi bacteria viruses archaea -U 5 0 0 \
+    --coverage lognormal \
+    --n_reads 0.1M \
+    --model miseq \
+    --output data/miseq_03 \
+    --compress \
+    --seed 18
+iss generate \
+    --ncbi bacteria viruses archaea -U 15 0 0 \
+    --coverage lognormal \
+    --n_reads 0.1M \
+    --model miseq \
+    --output data/miseq_04 \
+    --compress \
+    --seed 19
+iss generate \
+    --ncbi bacteria viruses archaea -U 5 0 0 \
+    --coverage lognormal \
+    --n_reads 0.1M \
+    --model miseq \
+    --output data/miseq_05 \
+    --compress \
+    --seed 20
+    </code></pre>
+</div>
+<div id="demo3-hiseq-metagenomics-data" class="section level3" number="3.3.3">
+<h3>
+<span class="header-section-number">3.3.3</span> Demo3: HiSeq metagenomics data<a class="anchor" aria-label="anchor" href="#demo3-hiseq-metagenomics-data"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li>Five hiseq paired fastq files</li>
+</ul>
+<pre><code>iss generate \
+    --ncbi bacteria viruses archaea -U 10 1 2 \
+    --coverage lognormal \
+    --n_reads 0.12M \
+    --model hiseq \
+    --output data/hiseq_01 \
+    --compress \
+    --seed 21
+iss generate \
+    --ncbi bacteria viruses archaea -U 15 1 1 \
+    --coverage lognormal \
+    --n_reads 0.11M \
+    --model hiseq \
+    --output data/hiseq_02 \
+    --compress \
+    --seed 22
+iss generate \
+    --ncbi bacteria viruses archaea -U 10 0 0 \
+    --coverage lognormal \
+    --n_reads 0.1M \
+    --model hiseq \
+    --output data/hiseq_03 \
+    --compress \
+    --seed 23
+iss generate \
+    --ncbi bacteria viruses archaea -U 10 0 0 \
+    --coverage lognormal \
+    --n_reads 0.1M \
+    --model hiseq \
+    --output data/hiseq_04 \
+    --compress \
+    --seed 24
+iss generate \
+    --ncbi bacteria viruses archaea -U 10 0 0 \
+    --coverage lognormal \
+    --n_reads 0.1M \
+    --model hiseq \
+    --output data/hiseq_05 \
+    --compress \
+    --seed 25
+</code></pre>
+<p><br></p>
+</div>
+</div>
+<div id="how-to-resize-fastq-files" class="section level2" number="3.4">
+<h2>
+<span class="header-section-number">3.4</span> How to resize fastq files<a class="anchor" aria-label="anchor" href="#how-to-resize-fastq-files"><i class="fas fa-link"></i></a>
+</h2>
+<ul>
+<li>Sometimes we want to extract a small subset to test the bioinformatics pipeline.</li>
+<li>You can resize the fastq files using a <code>seqkit sample</code> function <span class="citation">(<a href="#ref-Shen2016" role="doc-biblioref"><strong>Shen2016?</strong></a>; <a href="references.html#ref-seqkit2022" role="doc-biblioref">W. Shen 2022</a>)</span>.</li>
+<li>Below is a demo for extracting only 0.1% of the sequencing data.</li>
+</ul>
+<pre><code>mkdir -p data
+for i in {706..761}
+  do
+    cat SRR7450$i\_R1.fastq \
+    | seqkit sample -p 0.01 \
+    | seqkit shuffle -o data/SRR7450$i\_R1_sub.fastq \
+    | cat SRR7450$i\_R2.fastq \
+    | seqkit sample -p 0.01 \
+    | seqkit shuffle -o data/SRR7450$i\_R2_sub.fastq
+  done
+</code></pre>
+
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="sample-metadata.html"><span class="header-section-number">2</span> Sample Metadata</a></div>
+<div class="next"><a href="preprocessing-tools.html"><span class="header-section-number">4</span> Read Processing Tools</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#sequencing-data"><span class="header-section-number">3</span> Sequencing Data</a></li>
+<li><a class="nav-link" href="#from-research-projects"><span class="header-section-number">3.1</span> From research projects</a></li>
+<li>
+<a class="nav-link" href="#from-archives-such-as-ncbi-sra"><span class="header-section-number">3.2</span> From archives such as NCBI-SRA</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#install-sra-toolkit-on-mac-os."><span class="header-section-number">3.2.1</span> Install SRA Toolkit on Mac OS.</a></li>
+<li><a class="nav-link" href="#create-a-cache-root-directory"><span class="header-section-number">3.2.2</span> Create a cache root directory</a></li>
+<li><a class="nav-link" href="#confirm-sra-toolkit-configuration"><span class="header-section-number">3.2.3</span> Confirm sra toolkit configuration</a></li>
+<li><a class="nav-link" href="#start-downloading-the-fastq-files"><span class="header-section-number">3.2.4</span> Start downloading the fastq files</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#simmulated-insilico-sequencing-data"><span class="header-section-number">3.3</span> Simmulated insilico sequencing data</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#demo1-novaseq-metagenomics-data"><span class="header-section-number">3.3.1</span> Demo1: NovaSeq metagenomics data</a></li>
+<li><a class="nav-link" href="#demo2-miseq-metagenomics-data"><span class="header-section-number">3.3.2</span> Demo2: MiSeq metagenomics data</a></li>
+<li><a class="nav-link" href="#demo3-hiseq-metagenomics-data"><span class="header-section-number">3.3.3</span> Demo3: HiSeq metagenomics data</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#how-to-resize-fastq-files"><span class="header-section-number">3.4</span> How to resize fastq files</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/tmbuza/microbiome-part1/blob/main/01c_sequencing_data.Rmd">View source <i class="fas fa-air-freshener"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/tmbuza/microbiome-part1/edit/main/01c_sequencing_data.Rmd">Edit this page <i class="fas fa-air-freshener"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Getting Started with Microbiome Data Analysis in R</strong>: Integrated solutions for better results" was written by Teresia Mrema-Buza, A Microbiome Computational Scientist and Owner of the Complex Data Insights, LLC, USA. It was last built on 2022-05-17.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer>
+</body>
+</html>
