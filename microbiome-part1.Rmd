@@ -148,7 +148,7 @@ graph
 
 <h2>Quick Glimpse</h2>
 
-Microbial communities play a vital role in human health and disease. Investigating the role of microbial communities in health and disease requires a thorough knowledge of the analytical process. We provide step-by-step analytics guides to enable the user to understand the microbial composition present in a given sample. This is <b>PART 1</b> of the microbiome data analysis workflows intended to help users getting started. A code for part 1 is available at a public [GitHub repository](https://github.com/tmbuza/microbiome-part1/). You can request a consulting service by contacting the developer using <a href="https://complexdatainsights.com/contact-us">this contact form</a>. 
+Microbial communities play a vital role in human health and disease. Investigating the role of microbial communities in health and disease requires a thorough knowledge of the entire process. This is <b>PART 1</b> of the practical user guide series. The code for part 1 is available at a public [GitHub repository](https://github.com/tmbuza/microbiome-part1/). If interested you can request a consulting service by contacting the developer using <a href="https://complexdatainsights.com/contact-us">this contact form</a>. 
 
 
 <h2>License</h2>
