@@ -4,7 +4,7 @@ language:
 delete_merged_file: false
 
 book_filename: "microbiome-part1"
-output_dir: docs
+output_dir:
 rmd_files: [
 "index.Rmd",
 "01a_basic_software.Rmd",
