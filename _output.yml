@@ -4,7 +4,7 @@ bookdown::gitbook:
     toc:
       before:
       after:
-    edit: https://github.com/tmbuza/microbiome-part1/edit/gh-pages/%s
+    edit: https://github.com/tmbuza/microbiome-part1/edit/main/%s
     download: ["pdf", "epub"]
 
 bookdown::pdf_book:
