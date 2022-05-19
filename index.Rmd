@@ -1,6 +1,6 @@
 ---
 title: "Getting Started with Microbiome Data Analysis in R"
-subtitle: "Integrated solutions for better results"
+# subtitle: "Integrated Microbiome Data Analysis Workflows"
 author: "Teresia Mrema-Buza, A Microbiome Computational Scientist and Owner of the Complex Data Insights, LLC, USA"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
@@ -106,7 +106,9 @@ source(file = "R/common.R")
 ```{r include=FALSE}
 library(DiagrammeR)
 library(DiagrammeRsvg)
+library(rsvg)
 
+# 1. Make a graph
 graph <- DiagrammeR::grViz("
 digraph {
 graph [layout = dot, rankdir = TD]
@@ -139,18 +141,20 @@ H [label = 'Bioinformatics Pipelines']
 
 }", height = 400, width = 600)
 
-### Visualize the graph object
-graph
+# 2. Convert to SVG, then save as png
+part1 = DiagrammeRsvg::export_svg(graph)
+part1 = charToRaw(part1) # flatten
+rsvg::rsvg_png(part1, "img/part1.png")
 ```
 
 
-<a href=""><img src="images/microbpart1.png" alt="Book cover" width="100%" style="padding: 50px 0px 100px 0px; float: right;"/></a>
+<a href=""><img src="images/smda_part1.png" alt="Book cover" width="100%" style="padding: 50px 0px 100px 0px; float: right;"/></a>
 
-<h2>Quick Glimpse</h2>
+## Quick Glimpse {-}
+Investigating the role of microbial communities in health and disease requires a thorough knowledge of the entire analytical process. Using wrong approaches can cost a significant amount of dollars and lengthy process to achieve the desired results. This is <b>PART 1</b> of the practical user guides intended to provide analytical support to the microbiome research community. The entire guide is reproducible, allowing users to easily follow along. If interested, user may use this model to publish their findings in a book format.
 
-Microbial communities play a vital role in human health and disease. Investigating the role of microbial communities in health and disease requires a thorough knowledge of the entire process. This is <b>PART 1</b> of the practical user guide series. The code for part 1 is available at a public [GitHub repository](https://github.com/tmbuza/microbiome-part1/). If interested you can request a consulting service by contacting the developer using <a href="https://complexdatainsights.com/contact-us">this contact form</a>. 
+## Structure of this guide {-}
+This guide is divided into chapters to facilitate easy navigation. Each chapter contains several sections as displayed in the navigation bars on the left and right. Click the hyper-linked text if you want to jump into a specific chapter or section.
 
-
-<h2>License</h2>
-
-![](images/CCbyNCND.png){ width=100px } The online version of this book is free and licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>
+## Code availability {-}
+The code is available at a public [GitHub repository](https://github.com/tmbuza/microbiome-part1/). If interested you can request a consulting service by contacting the developer of this repo using <a href="https://complexdatainsights.com/contact-us">this contact form</a>. 

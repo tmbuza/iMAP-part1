@@ -1,19 +1,21 @@
-# Sequencing Data {#sequencing-data}
+# (PART) SEQUENCING DATA {-}
 
-Sequencing data may include:
+# Raw Read Fastq Sequences {#raw-data}
 
-1. Research projects
-2. From Sequence Read Archive (SRA)
-3. In `silico` simulation
+Read sequencing data may be obtained from different sources. The most common ones include:
+
+1. Reads from sequencing platforms for research purposes.
+2. Reads downloaded from the Sequence Read Archive (SRA).
+3. Reads synthesized `in-silico` using special simulation software
 
 
-## From research projects
+## Reads from sequencing platforms
 The most common sources of sequencing data are from research projects. There are multiple sequencing platforms out there. For example, Illumina sequencing company uses technologies capable of profiling entire microbial communities present in environmental. Example include: 
 
 - 16S rRNA Sequencing
 - Shotgun Metagenomic Sequencing
 
-## From archives such as NCBI-SRA
+## Reads from archives such as NCBI-SRA
 The NCBI Sequence Read Archive (SRA) stores sequencing data from the next generation sequencing platforms. Users can download data from the SRA archive. Below are minimal steps to do that:
 
 ### Install SRA Toolkit on Mac OS.
@@ -47,14 +49,14 @@ vdb-config -i
 
 ![A screenshot of the SRA configuration.](images/sra_config_cache.png){width=100%}
 
-For more information click [here](https://github.com/ncbi/sra-tools/wiki/03.-Quick-Toolkit-Configuration).
-
 <br>
 
-### Start downloading the fastq files
+For more information click [here](https://github.com/ncbi/sra-tools/wiki/03.-Quick-Toolkit-Configuration).
+
+## Downloading the fastq files
 - Be sure that the `fasterq-dump` is in the path.
 - Type `which fasterq-dump` to confirm if is in the path.
-- Use the absolute path like `~/sratoolkit.3.0.0-mac64/bin/fasterq-dump` if not already exported to the path.
+- Use the absolute path like `~/sratoolkit.3.0.0-mac64/bin/fasterq-dump` if the executable file is not in the path.
 - The example below uses absolute path to execute the `fasterq-dump` command.
 
 > Notice that the output and temporary files are placed in an external drive mounted to the computer.
@@ -73,12 +75,12 @@ for (( i = 706; i <= 761; i++ ))
 ```
 
 
-## Simmulated insilico sequencing data
-- Most insilico data is used for testing software before applying real data.
-- How to generate insilico data can be challenging. 
-- Below is a demo for generating NovaSeq, MiSeq and HiSeq insilico sequencing data.
+# How to Synthesize Metagenomics Reads {#synthetic-reads}
+- Most `insilico` data is used for testing software before using real data.
+- Generating `insilico` data can be challenging but not can provide a starting data for testing some pipelines.
+- Below is a demo for generating NovaSeq, MiSeq and HiSeq `insilico` sequencing data.
 
-### Demo1: NovaSeq metagenomics data
+### Demo1: Using NovaSeq to generate metagenomics data
 
 - Five novaseq paired fastq files
 
@@ -126,7 +128,8 @@ iss generate \
 	
 ```	
 
-### Demo2: MiSeq  metagenomics data
+### Demo2:  Using MiSeq to generate metagenomics data
+
 - Five miseq paired fastq files
 
 ```{}
@@ -173,7 +176,8 @@ iss generate \
 	
 ```	
 	
-### Demo3: HiSeq  metagenomics data
+### Demo3: UsingbHiSeq to generate metagenomics data
+
 - Five hiseq paired fastq files
 
 ```{}
@@ -220,15 +224,14 @@ iss generate \
 
 ```
 
-
 <br>
 
-## How to resize fastq files 
+# How to Resize Fastq Files {#resizing-fastq}
 - Sometimes we want to extract a small subset to test the bioinformatics pipeline.
-- You can resize the fastq files using a `seqkit sample` function [@Shen2016; @seqkit2022].
+- You can resize the fastq files using the `seqkit sample` function [@Shen2016; @seqkit2022].
 - Below is a demo for extracting only 0.1% of the sequencing data.
 
-```{}
+```bash
 mkdir -p data
 for i in {706..761}
   do
@@ -241,7 +244,3 @@ for i in {706..761}
   done
 
 ```
-
-
-
-

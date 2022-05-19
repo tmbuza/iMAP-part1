@@ -24,11 +24,10 @@ rdata
 ```
 
 
-## CSV Format for Selected Dataframe
+## CSV or TSV Format Files
 ```{r}
 
-csv <- list.files(path="./RDataRDS", pattern = "*.csv", full.names = TRUE)
-csv
+list.files(path="./data", pattern = "*.csv|tsv", full.names = TRUE)
 
 ```
 
@@ -53,7 +52,7 @@ lsdata("RDataRDS/saved_objects.RData")
 ```
 
 
-# Software and Packages Used
+# Software and Packages
 
 ## Basic dependencies
 * `r R.version.string`

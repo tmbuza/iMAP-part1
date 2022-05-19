@@ -1,7 +1,6 @@
-# (PART) GETTING STARTED {-}
+# (PART) BASIC SOFTWARE {-}
 
-# Basic Software {#basic-software}
-## Install R Environments {#Renv}
+# Installing R Environment {#R-environment}
 
 <a href=""><img src="images/rlogoblue.png" alt="R Software" width="100" style="padding: 0 15px; float: left;"/></a>
 **R** is a free software for statistical computing, data analysis, and graphics [@RCoreTeam2021]. We need to install R application on a personal computer to process the R programming language. You can download and install R using these steps:
@@ -13,7 +12,7 @@
 
 <br>
 
-## Install RStudio Environments {#rstudio}
+# Installing RStudio Environment {#rstudio-ide}
 
 <a href=""><img src="images/rstudio.png" alt="RStudio" width="100" style="padding: 0 15px; float: left;"/></a>
 
@@ -30,10 +29,9 @@
 
 <br>
 
-## Install R packages {#installpkgs}
+# Installing R packages {#install-packages}
 Install basic packages that get the analysis started. We will introduce additional packages within the subsequent sections whenever needed
 
-**Description of selected packages**
 
 | Package | Description |
 | :--------------------- | :---------------------------------------------- |
@@ -48,23 +46,23 @@ Install basic packages that get the analysis started. We will introduce addition
 | [forcat](https://www.rdocumentation.org/packages/forcats/) | The *forcats* provide functions for solving common problems with factors. |
 
 
-```{block, type="tmbinfo", echo=TRUE}
-**Location of R packages used in this Book**
+
+## Location of R packages used in this Book
 
 * [CRAN](https://cran.r-project.org/) (Comprehensive R Archive Network): The official repository. Reviewed!
 * [Bioconductor](https://www.bioconductor.org/): Most popular repository for bioinformatics software. Reviewed!
 * [Github](https://github.com/): Most popular repository for open source projects. Not Reviewed!
-```
 
 
-**Installing and loading packages from CRAN**
+
+## Installing and loading packages from CRAN
 ```{}
 install.packages("packagename")
 library("packagename")
 ```
 
 
-**Installing and loading R packages from Bioconductor**
+## Installing and loading R packages from Bioconductor
 ```{}
 # Install BiocManager
 if (!requireNamespace("BiocManager", quietly = TRUE)) install.packages("BiocManager")
@@ -76,7 +74,7 @@ library("packagename")
 ```
 
 
-**Installing and loading R packages from GitHub**.
+## Installing and loading R packages from GitHub
 
 ```{}
 # Install devtools from CRAN
@@ -94,9 +92,9 @@ library("packagename")
 ```
 
 
-## Getting Help in R
+# Getting Help in R
 
-**Show basic package information**
+## Show basic package information 
 
 ```{}
 help("packagename")
@@ -109,7 +107,8 @@ help(package = "packagename")
 
 ```
 
-**Get a general overview of a function, including an example code**
+## Getting a general overview
+- of a function, including an example code**
 
 ```{}
 help(functionname)
@@ -120,13 +119,13 @@ help(functionname, package = "packagename")
 
 ```
 
-**Remove unneeded packages from your computer**
+## Remove unneeded packages from your computer 
 
 ```{}
 remove.packages("packagename")
 ```
 
-**Unload a package**
+## Unload a package 
 
 ```{}
 detach("package::packagename")

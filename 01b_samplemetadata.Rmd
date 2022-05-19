@@ -1,4 +1,6 @@
-# Sample Metadata {#sample-metadata}
+# (PART) SAMPLE METADATA {-}
+
+# Microbiome Sample Metadata {#sample-metadata}
 
 ## What is metadata?
 * <b>Metadata</b> is a set of data that describes and provides information about other data. It is commonly defined as **data about data**.
@@ -18,35 +20,46 @@
 
 <br>
 
-## Metadata profiling
+# Sample Metadata profiling {#metadata-profiling}
 ```{block, type="tmbinfo", echo=TRUE}
 Typically, after sequencing the microbiome DNA, the investigators are encouraged to deposit the sequence reads in a public repository. The Sequence Read Archive (SRA) is currently the best bioinformatics database for read information. The good thing about SRA is that it integrates data from the NCBI, the European Bioinformatics Institute (EBI), and the DNA Data Bank of Japan (DDBJ). 
 
 ```
 
-Here we profile metadata associated with the bushmeat microbiome project number [PRJNA477349](https://www.ncbi.nlm.nih.gov/sra?linkname=bioproject_sra_all&from_uid=477349).
+Here we profile metadata associated with the bushmeat microbiome bioproject number [PRJNA477349](https://www.ncbi.nlm.nih.gov/sra?linkname=bioproject_sra_all&from_uid=477349).
 
 - We will demonstrate:
-  - how to download metadata from the NCBI-SRA archive. 
-  - how to read the metadata file into R environment. 
-  - how to create a tidy dataframe.
-  - how to select and filter desired metadata
+  - how to download published sample metadata from the NCBI-SRA archive using the bioproject number as a primary search key. 
+  - how to load the metadata file into R environment. 
+  - how to manipulate and create a tidy metadata.
+  - how to filter and select desired metadata for integrating with downstream analyses.
   
-### Downloading metadata using the NCBI-SRA run selector
+## Downloading metadata using the NCBI-SRA run selector
+- In this demo we will save the metadata in a folder names `data`. So, let's create the folder (if it doesn't exist!). 
 
-![Screen shot of SRA Run Selector for metadata associated with the NCBI-SRA project number PRJNA477349](images/sra_run_selector.png){width=100%}
-### Reading metadata into R environment
+```{r}
+if (!dir.exists("data")) {dir.create("data")}
+```
+
+> Note that the SRA filename for metadata is automatically named `SraRunTable.txt`...see the figure below for more guidance.
+
+
+![Screen shot of SRA Run Selector for metadata associated with the NCBI-SRA bioproject number PRJNA477349](images/sra_run_selector.png){width=100%}
+
+<br>
+
+## Loading metadata into R environment
 ```{r warning=FALSE}
-source("R/common.R")
+library(tidyverse)
 sraruntable <- read_delim("data/SraRunTable.txt", show_col_types = FALSE)
 ```
 
-### How many rows and columns
+## How many rows and columns
 ```{r}
 paste("There are", dim(sraruntable)[1], "rows and", dim(sraruntable)[2],"columns in this metadata")
 ```
 
-### Column names
+## Column names
 Getting a clear knowledge about the variables associated with a sample metadata can help in filtering the most important features.
  
 ```{r}
@@ -133,28 +146,31 @@ metadata %>%
 
 <br>
 
-### Distribution across common variable
+### Distribution across a common variable
+> Note that we use `facet_grid()` function to partition the plot into panels to show different subsets of the data. This can help to reveal the distribution of levels and their relationship.
+
 ```{r distrib}
 metadata %>% 
   ggplot(aes(x = isolate, y = milionbases, fill = ecosystem)) +
   facet_grid(~ ecosystem) +
   geom_col(position = "dodge") +
   coord_flip() +
-  labs(x = "Animal Name", y = "Bases (milion)") +
+  labs(x = "Animal Name", y = "Read size (milion bases)") +
   theme_light()  + 
   nolegend +
-  facetsize12 +
  axislayout
 ```
 
 <br>
 
-## Mapping sample collection points 
-Sometimes it may be good to pinpoint sample collection point on geographical map for better feature comparison. The [`leaflet`](https://rstudio.github.io/leaflet/) R package can do a great job in dropping a pin on the corresponding coordinate. 
+# Locating sample collection points {#sample-location}
+## Interactive map 
+- The [`leaflet`](https://rstudio.github.io/leaflet/) R package can do a great job in dropping a pin on the corresponding coordinate. 
+- Note that samples collected on the same coordinate will overlap. 
+- You can zoom in-out to expand or minimize the map. 
+- You can also mouse over the pin to see the variable label. 
 
 Let's give it a try. 
-
-> Note that samples collected on the same coordinate will overlap. You can zoom in-out to expand or minimize the map. Mouse over the pin to see the variable label. 
 
 ```{r map}
 library(leaflet)
@@ -179,7 +195,7 @@ metadata %>%
 
 <br>
 
-### Example of screenshots from zoom in-out
+## Example of screenshots from zoom in-out
 
 ![World map: Geographical location of sample collection points.](images/loc_on_world_map.png){ width=60% }
 

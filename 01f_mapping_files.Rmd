@@ -1,0 +1,121 @@
+# (PART) MAPPING FILES {-}
+
+# Preparing Mapping Files
+The mapping files are require to direct the pipeline where to look for the files containing the sequencing data.
+
+- The format of the mapping files for `mothur` and `QIIME2` pipelines is slightly different. 
+- We will demonstrate how to prepare both.
+- Each mapping file will contain only the files that are parsed by bioinformatics analysis. 
+
+> We will select files containing <65,000 sequences for demo purposes. We will start by getting the statistics of the samples.
+
+## Explore read statistics 
+- Are the files compressed?
+- You may want to save space by compressing the unzipped files. 
+- Navigate to the folder containing the fastq files and compress them using `gzip` function.
+
+```bash
+gzip *.fastq
+```
+
+> From this point foward we will assume that all the fastq files are in `fastq.gz` format.
+
+- Using `seqkit stat` function to compute read statistics.
+- We will store the output in `data/stats1/seqkit_stats.txt`.
+- The seqkit output will contain useful information for preparing the mapping files.
+
+```bash
+mkdir -p data
+mkdir -p data/stats1  
+seqkit stat *.fastq.gz >data/stats1/seqkit_stats.txt
+
+```
+
+## Mothur mapping file
+The mapping files for use with `mothur` pipeline can be generated automatically if using the whole dataset. However, if you are interested in just a fraction of the files, you can create it manually and specify what to include.
+
+
+```{r}
+library(tidyverse)
+read_table("data/stats1/seqkit_stats.txt") %>% 
+  mutate(sample_id = str_replace_all(file, ".*/", ""), .before=file) %>% 
+  mutate(sample_id = str_replace_all(sample_id, "_\\d?.fastq.gz", "")) %>%
+  filter(str_detect(file, "_1" )) %>% 
+  mutate(file2 =file, .after = file) %>% 
+  mutate(file2 = str_replace_all(file, "_1.fastq.gz", "_2.fastq.gz")) %>%
+  distinct() %>% 
+  group_by(sample_id) %>%
+  filter(num_seqs <65000) %>% 
+  arrange(num_seqs) %>% 
+  ungroup() %>%
+  select(sample_id, forward = file, reverse = file2) %>% 
+  write_tsv("data/mothur_mapping_file.tsv")
+  # saveRDS("RDataRDS/mothur_mapping_file.rds")
+
+read_tsv("data/mothur_mapping_file.tsv") %>% 
+  as.data.frame()
+
+```
+
+## Metadata for Mothur pipeline
+- Mothur pipeline expects the design (metadata) file to have column headers. 
+- We will extract only the desired number of samples.
+- The first column header should be **group**.
+- For more detail click [here](https://mothur.org/wiki/miseq_sop/).
+
+```{r}
+read_tsv("data/mothur_mapping_file.tsv") %>% 
+  select(sample_id) %>% 
+  inner_join(., readRDS("RDataRDS/metadata.rds"), by = "sample_id") %>% 
+  select(group = sample_id, isolate) %>%
+  write_tsv("data/mothur_metadata.tsv")
+  # saveRDS("RDataRDS/mothur_metadata.rds")
+
+read_tsv("data/mothur_metadata.tsv") %>% 
+  as.data.frame()
+```
+
+## QIIME2 mapping file
+
+```{r}
+library(tidyverse)
+read_table("data/stats1/seqkit_stats.txt") %>% 
+  mutate(sample_id = str_replace_all(file, ".*/", ""), .before=file) %>% 
+  mutate(sample_id = str_replace_all(sample_id, "_\\d?.fastq.gz", "")) %>%
+  filter(str_detect(file, "_1" )) %>% 
+  mutate(file2 =file, .after = file) %>% 
+  mutate(file2 = str_replace_all(file, "_1.fastq.gz", "_2.fastq.gz")) %>%
+  distinct() %>% 
+  group_by(sample_id) %>%
+  filter(num_seqs <65000) %>% 
+  arrange(num_seqs) %>%
+  ungroup() %>% 
+  mutate(file = str_replace_all(file, "SRR", "$PWD/SRR")) %>%
+  mutate(file2 = str_replace_all(file2, "SRR", "$PWD/SRR")) %>%
+  select("sample-id" = sample_id, "forward-absolute-filepath" = file, "reverse-absolute-filepath" = file2) %>% 
+  write_tsv("data/q2-pe-33-manifest.tsv")
+  # saveRDS("RDataRDS/q2-pe-33-manifest.rds")
+  
+read_tsv("data/q2-pe-33-manifest.tsv") %>% 
+  as.data.frame()
+```
+
+## Metadata for QIIME2 pipeline
+- The TSV format is recommended for QIIME2 metadata. For more details click [here](https://docs.qiime2.org/2022.2/tutorials/metadata/).
+- The first column is sample identifier i.e. `sample-id` NOT with underscore like `sample_id`.
+- The command below will replace `sample_id` in the metadata to `sample-id`.
+
+```{r}
+read_tsv("data/q2-pe-33-manifest.tsv") %>% 
+  select(sample_id = "sample-id") %>% 
+  inner_join(., readRDS("RDataRDS/metadata.rds"), by = "sample_id") %>% 
+  rename("sample-id" = sample_id) %>%
+  write_tsv("data/q2-metadata.tsv")
+  # saveRDS("RDataRDS/q2-metadata.rds")
+
+read_tsv("data/q2-metadata.tsv") %>% 
+  as.data.frame()
+```
+
+
+

@@ -1,20 +1,28 @@
-# Bioinformatics Pipelines {#bioinformatics-pipelines}
+# (PART) BIOINFORMATICS PIPELINES {-}
 
-## Pipeline for analyzing 16S rRNA amplicon data {#amplicon-analysis}
-Below are few most popular platforms that offers free lightweight and reproducible tutorials for analyzing 16S rRNA gene sequencing data.
+# Microbiome Pipelines for 16S rRNA {#bioinfo-16s}
+In this guide we will install or highlight tools of interest for bioinformatics analysis of 16S rRNA gene sequencing data.  Make sure to check for latest instructions online.
 
-| Pipeline | Description | Tutorial | Install |
-|-----------|-----------------|----------------------|
-| Mothur |  An open-source software package for bioinformatics data processing including 16S rRNA gene sequencing data | [Basic Tutorial](https://mothur.org/wiki/miseq_sop/)  |  [Download](https://github.com/mothur/mothur/releases/) |
-| QIIME2 | An open-source microbiome analysis package including 16S rRNA gene sequencing data | [Tutorials](https://docs.qiime2.org/2022.2/tutorials/)  | [Installation](https://docs.qiime2.org/2022.2/install/) |
-| Nephele | Open, accessible high performmance cloud platform platform for microbial bioinformatics. Integrates Mothur, QIIME2, DADA2 and Biobakery | [Some tutorials](https://nephele.niaid.nih.gov/user_guide/) | [User Guide](https://nephele.niaid.nih.gov/user_guide/)  |
-||||
+## Mothur Pipeline
+- Mothur is an open-source software package for bioinformatics data processing.
+- It is a very famous platform comprised of over 145 tools that can be integrated to for a desired pipeline. 
+- Mothur has a [basic tutorial](https://mothur.org/wiki/miseq_sop/) that help users get started with 16S rRNA gene analysis. 
+- We can download a stable platform from [here](https://github.com/mothur/mothur/releases/).
 
-> Make sure to check for latest instructions online.
+## QIIME2 Pipeline
+- QIIME2 is an open-source microbiome analysis platform with integrated software for quality control such as DADA2.
+- It is a very famous platform with an active community forum. 
+- QIIME2 has [profound tutorials](https://docs.qiime2.org/2022.2/tutorials/) that help users get started with 16S rRNA gene analysis. 
+- We can instal the latest version from [here](https://docs.qiime2.org/2022.2/install/).
 
 
-## Pipelines for analyzing metagenomics data {#metagenomics-analysis}
+## Nephele Platform
+- Nephele is an open, accessible high performmance cloud platform platform for microbial bioinformatics. 
+- Nephele integrates Mothur, QIIME2, DADA2 and Biobakery
+- For more details see some of their [tutorials](https://nephele.niaid.nih.gov/user_guide/) and useful [user guide](https://nephele.niaid.nih.gov/user_guide/).
 
+
+# Microbiome Pipelines for Metagenomics {#bioinfo-metagenomics}
 The installation instruction of various pipeline is found [here](https://github.com/biobakery/biobakery/wiki). See the table below for specific software.
 
 | Pipeline | Description | Tutorial |
@@ -24,5 +32,4 @@ The installation instruction of various pipeline is found [here](https://github.
 | HumanN  | Functional Profiling from metagenomic sequencing data | [Tutorial](https://github.com/biobakery/biobakery/wiki/humann3)  |
 ||| 
 
-> Make sure to check for latest instructions online.
 
