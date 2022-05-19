@@ -123,21 +123,23 @@ penwidth = 2.0]
 edge [arrowhead = diamond]
 
 A [label = 'Getting Started', fillcolor = white, penwidth = 5.0]
-B [label = 'Basic Requirements']
-C [label = 'Sample Metadata']
-D [label = 'Software']
+B [label = 'Requirements']
+C [label = 'Basic Software']
+D [label = 'Sample Metadata']
 E [label = 'Sequencing Data']
-F [label = 'Data Analysis Tools']
+F [label = 'Analysis & Visualization Tools']
 G [label = 'Preprocessing Tools']
 H [label = 'Bioinformatics Pipelines']
+I [label = 'Mapping Files']
 
 {A}  -> B
 {B}  -> C
 {B}  -> D
 {B}  -> E
-{D}  -> F
-{D}  -> G
-{D}  -> H
+{C}  -> F
+{C}  -> G
+{C}  -> H
+{B}  -> I
 
 }", height = 400, width = 600)
 
