@@ -1,6 +1,4 @@
-# (PART) MAPPING FILES {-}
-
-# Preparing Mapping Files
+# Mapping Files
 The mapping files are require to direct the pipeline where to look for the files containing the sequencing data.
 
 - The format of the mapping files for `mothur` and `QIIME2` pipelines is slightly different. 

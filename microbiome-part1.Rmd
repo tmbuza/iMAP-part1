@@ -1,6 +1,6 @@
 ---
-title: "Getting Started with Microbiome Data Analysis in R"
-# subtitle: "Integrated Microbiome Data Analysis Workflows"
+title: "End-to-End Microbiome Data Analysis in R"
+subtitle: "PART 1: Preparing for Microbiome Data Analysis"
 author: "Teresia Mrema-Buza, A Microbiome Computational Scientist and Owner of the Complex Data Insights, LLC, USA"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
@@ -150,7 +150,7 @@ rsvg::rsvg_png(part1, "img/part1.png")
 ```
 
 
-<a href=""><img src="images/smda_part1.png" alt="Book cover" width="100%" style="padding: 50px 0px 100px 0px; float: right;"/></a>
+<a href=""><img src="images/part1_6-tiers.png" alt="Book cover" width="100%" style="padding: 50px 0px 100px 0px; float: right;"/></a>
 
 ## Quick Glimpse {-}
 Investigating the role of microbial communities in health and disease requires a thorough knowledge of the entire analytical process. Using wrong approaches can cost a significant amount of dollars and lengthy process to achieve the desired results. This is <b>PART 1</b> of the practical user guides intended to provide analytical support to the microbiome research community. The entire guide is reproducible, allowing users to easily follow along. If interested, user may use this model to publish their findings in a book format.
@@ -163,9 +163,9 @@ The code is available at a public [GitHub repository](https://github.com/tmbuza/
 
 <!--chapter:end:index.Rmd-->
 
-# (PART) BASIC SOFTWARE {-}
+# Basic Software
 
-# Installing R Environment {#R-environment}
+## Install R Environment {#R-environment}
 
 <a href=""><img src="images/rlogoblue.png" alt="R Software" width="100" style="padding: 0 15px; float: left;"/></a>
 **R** is a free software for statistical computing, data analysis, and graphics [@RCoreTeam2021]. We need to install R application on a personal computer to process the R programming language. You can download and install R using these steps:
@@ -177,7 +177,7 @@ The code is available at a public [GitHub repository](https://github.com/tmbuza/
 
 <br>
 
-# Installing RStudio Environment {#rstudio-ide}
+## Install RStudio Environment {#rstudio-ide}
 
 <a href=""><img src="images/rstudio.png" alt="RStudio" width="100" style="padding: 0 15px; float: left;"/></a>
 
@@ -194,7 +194,7 @@ The code is available at a public [GitHub repository](https://github.com/tmbuza/
 
 <br>
 
-# Installing R packages {#install-packages}
+## Install R packages {#install-packages}
 Install basic packages that get the analysis started. We will introduce additional packages within the subsequent sections whenever needed
 
 
@@ -212,22 +212,23 @@ Install basic packages that get the analysis started. We will introduce addition
 
 
 
+```{block, type="tmbinfo", echo=T}
 ## Location of R packages used in this Book
 
 * [CRAN](https://cran.r-project.org/) (Comprehensive R Archive Network): The official repository. Reviewed!
 * [Bioconductor](https://www.bioconductor.org/): Most popular repository for bioinformatics software. Reviewed!
 * [Github](https://github.com/): Most popular repository for open source projects. Not Reviewed!
+```
 
 
-
-## Installing and loading packages from CRAN
+### Installing and loading packages from CRAN
 ```{}
 install.packages("packagename")
 library("packagename")
 ```
 
 
-## Installing and loading R packages from Bioconductor
+### Installing and loading R packages from Bioconductor
 ```{}
 # Install BiocManager
 if (!requireNamespace("BiocManager", quietly = TRUE)) install.packages("BiocManager")
@@ -239,7 +240,7 @@ library("packagename")
 ```
 
 
-## Installing and loading R packages from GitHub
+### Installing and loading R packages from GitHub
 
 ```{}
 # Install devtools from CRAN
@@ -257,9 +258,9 @@ library("packagename")
 ```
 
 
-# Getting Help in R
+## Getting Help in R
 
-## Show basic package information 
+### Show basic package information 
 
 ```{}
 help("packagename")
@@ -272,7 +273,7 @@ help(package = "packagename")
 
 ```
 
-## Getting a general overview
+### Get a general overview
 - of a function, including an example code**
 
 ```{}
@@ -284,29 +285,25 @@ help(functionname, package = "packagename")
 
 ```
 
-## Remove unneeded packages from your computer 
+### Remove unneeded packages from your computer 
 
 ```{}
 remove.packages("packagename")
 ```
 
-## Unload a package 
+### Unload a package 
 
 ```{}
 detach("package::packagename")
 ```
 
-## Citation Information
-Run on R console command line
+### Citing R, RStudio or a package
 ```{}
-# Citing R\n
 citation()
 
-# Citing RStudio
 library(rstudioapi)
 versionInfo()$citation
 
-# Citing Package ...example
 citation("tidyverse")
 ```
 
@@ -319,9 +316,7 @@ citation("tidyverse")
 
 <!--chapter:end:01a_basic_software.Rmd-->
 
-# (PART) SAMPLE METADATA {-}
-
-# Microbiome Sample Metadata {#sample-metadata}
+# Sample Metadata {#sample-metadata}
 
 ## What is metadata?
 * <b>Metadata</b> is a set of data that describes and provides information about other data. It is commonly defined as **data about data**.
@@ -341,7 +336,7 @@ citation("tidyverse")
 
 <br>
 
-# Sample Metadata profiling {#metadata-profiling}
+## Metadata profiling {#metadata-profiling}
 ```{block, type="tmbinfo", echo=TRUE}
 Typically, after sequencing the microbiome DNA, the investigators are encouraged to deposit the sequence reads in a public repository. The Sequence Read Archive (SRA) is currently the best bioinformatics database for read information. The good thing about SRA is that it integrates data from the NCBI, the European Bioinformatics Institute (EBI), and the DNA Data Bank of Japan (DDBJ). 
 
@@ -355,32 +350,33 @@ Here we profile metadata associated with the bushmeat microbiome bioproject numb
   - how to manipulate and create a tidy metadata.
   - how to filter and select desired metadata for integrating with downstream analyses.
   
-## Downloading metadata using the NCBI-SRA run selector
-- In this demo we will save the metadata in a folder names `data`. So, let's create the folder (if it doesn't exist!). 
+### Downloading metadata from NCBI-SRA
+- Note that the SRA filename for metadata is automatically named `SraRunTable.txt`.
+- We will save the metadata file in a folder named `data`.
+- Let's create `a`data` folder (if it doesn't exist!). 
 
 ```{r}
 if (!dir.exists("data")) {dir.create("data")}
 ```
 
-> Note that the SRA filename for metadata is automatically named `SraRunTable.txt`...see the figure below for more guidance.
 
 
 ![Screen shot of SRA Run Selector for metadata associated with the NCBI-SRA bioproject number PRJNA477349](images/sra_run_selector.png){width=100%}
 
 <br>
 
-## Loading metadata into R environment
+### Loading metadata into R environment
 ```{r warning=FALSE}
 library(tidyverse)
 sraruntable <- read_delim("data/SraRunTable.txt", show_col_types = FALSE)
 ```
 
-## How many rows and columns
+### How many rows and columns
 ```{r}
 paste("There are", dim(sraruntable)[1], "rows and", dim(sraruntable)[2],"columns in this metadata")
 ```
 
-## Column names
+### Column names
 Getting a clear knowledge about the variables associated with a sample metadata can help in filtering the most important features.
  
 ```{r}
@@ -484,8 +480,8 @@ metadata %>%
 
 <br>
 
-# Locating sample collection points {#sample-location}
-## Interactive map 
+## Locating sample collection points {#sample-location}
+### Interactive map 
 - The [`leaflet`](https://rstudio.github.io/leaflet/) R package can do a great job in dropping a pin on the corresponding coordinate. 
 - Note that samples collected on the same coordinate will overlap. 
 - You can zoom in-out to expand or minimize the map. 
@@ -516,7 +512,7 @@ metadata %>%
 
 <br>
 
-## Example of screenshots from zoom in-out
+### Example of screenshots from zoom in-out
 
 ![World map: Geographical location of sample collection points.](images/loc_on_world_map.png){ width=60% }
 
@@ -542,9 +538,7 @@ save(
 
 <!--chapter:end:01b_samplemetadata.Rmd-->
 
-# (PART) PREPROCESSING TOOLS {-}
-
-# Required Processing Tools {#preprocessing-tools}
+# Processing Tools {#preprocessing-tools}
 
 There several tools out there that can help in preprocessing raw read. Listed below are some of most common tools used in understanding the characteristics of the read and their quality scores. Click on the hyperlinked tool to learn more how to install it.
 
@@ -555,9 +549,9 @@ There several tools out there that can help in preprocessing raw read. Listed be
 - [Kneaddata](https://huttenhower.sph.harvard.edu/kneaddata/) in biobakery platform [@kneaddata2022] 
  
 
-# Installing Preprocessing Tools on Mac {#install-on-mac}
+## Demo installing preprocessing tools on Mac {#install-on-mac}
 
-## Installing seqkit
+## Seqkit for simple statistics
 ```bash
 wget --no-check-certificate https://github.com/shenwei356/seqkit/releases/download/v0.8.0/seqkit_darwin_amd64.tar.gz
 tar -zxvf seqkit_darwin_amd64.tar.gz
@@ -566,7 +560,7 @@ cp code/seqkit ~/bin/
 rm seqkit_darwin_amd64.tar.gz
 ```
 
-## Installing fastqc
+## Fastqc for quality assessment
 ```bash
 wget --no-check-certificate https://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v0.11.7.zip
 unzip fastqc_v0.11.7.zip
@@ -576,69 +570,15 @@ cp code/FastQC/fastqc ~/bin/
 rm fastqc_v0.11.7.zip
 ```
 
-## Installing bbmap
+## MultiQC for sumarizing FastQC metrics
 ```bash
-wget --no-check-certificate https://sourceforge.net/projects/bbmap/files/BBMap_37.90.tar.gz
-tar -xvzf BBMap_37.90.tar.gz
-mv -v bbmap code/
-cp code/bbmap/bbduk.sh ~/bin/
-rm BBMap_37.90.tar.gz
+python --version
+pip install --upgrade pip
+pip install --user multiqc
+
 ```
 
-
-# Installing Preprocessing Tools on Linux {#install-on-linux}
-
-## Install seqkit
-```bash
-wget --no-check-certificate https://github.com/shenwei356/seqkit/releases/download/v0.8.0/seqkit_darwin_amd64.tar.gz
-tar -zxvf seqkit_darwin_amd64.tar.gz
-mv seqkit code/
-cp code/seqkit ~/bin/
-rm seqkit_darwin_amd64.tar.gz
-```
-
-## Install fastqc
-```bash
-wget --no-check-certificate https://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v0.11.7.zip
-unzip fastqc_v0.11.7.zip
-chmod 755 FastQC/fastqc
-mv -v FastQC code/
-cp code/FastQC/fastqc ~/bin/
-rm fastqc_v0.11.7.zip
-```
-
-## Install bbmap
-```bash
-wget --no-check-certificate https://sourceforge.net/projects/bbmap/files/BBMap_37.90.tar.gz
-tar -xvzf BBMap_37.90.tar.gz
-mv -v bbmap code/
-cp code/bbmap/bbduk.sh ~/bin/
-rm BBMap_37.90.tar.gz
-```
-
-
-# Installing Preprocessing Tools on Windows {#install-on-win}
-
-## Install seqkit
-```bash
-wget --no-check-certificate https://github.com/shenwei356/seqkit/releases/download/v0.8.0/seqkit_darwin_amd64.tar.gz
-tar -zxvf seqkit_darwin_amd64.tar.gz
-mv seqkit code/
-cp code/seqkit ~/bin/
-rm seqkit_darwin_amd64.tar.gz
-```
-
-## Install fastqc
-```bash
-wget --no-check-certificate https://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v0.11.7.zip
-unzip fastqc_v0.11.7.zip
-chmod 755 FastQC/fastqc
-mv -v FastQC code/
-cp code/FastQC/fastqc ~/bin/
-rm fastqc_v0.11.7.zip
-```
-
-## Install bbmap
+## BBMap for trimming and decontamination
 ```bash
 wget --no-check-certificate https://sourceforge.net/projects/bbmap/files/BBMap_37.90.tar.gz
 tar -xvzf BBMap_37.90.tar.gz
@@ -656,9 +596,7 @@ rm BBMap_37.90.tar.gz
 
 <!--chapter:end:01c_preprocessing_tools.Rmd-->
 
-# (PART) SEQUENCING DATA {-}
-
-# Raw Read Fastq Sequences {#raw-data}
+# Sequencing Data {#raw-data}
 
 Read sequencing data may be obtained from different sources. The most common ones include:
 
@@ -711,7 +649,7 @@ vdb-config -i
 
 For more information click [here](https://github.com/ncbi/sra-tools/wiki/03.-Quick-Toolkit-Configuration).
 
-## Downloading the fastq files
+### Downloading the fastq files
 - Be sure that the `fasterq-dump` is in the path.
 - Type `which fasterq-dump` to confirm if is in the path.
 - Use the absolute path like `~/sratoolkit.3.0.0-mac64/bin/fasterq-dump` if the executable file is not in the path.
@@ -733,15 +671,12 @@ for (( i = 706; i <= 761; i++ ))
 ```
 
 
-# How to Synthesize Metagenomics Reads {#synthetic-reads}
+## Synthetic metagenomics Reads {#synthetic-reads}
 - Most `insilico` data is used for testing software before using real data.
 - Generating `insilico` data can be challenging but not can provide a starting data for testing some pipelines.
 - Below is a demo for generating NovaSeq, MiSeq and HiSeq `insilico` sequencing data.
 
-### Demo1: Using NovaSeq to generate metagenomics data
-
-- Five novaseq paired fastq files
-
+### Using NovaSeq platform
 ```{}
 iss generate \
 	--ncbi bacteria viruses archaea -U 15 0 2 \
@@ -786,10 +721,7 @@ iss generate \
 	
 ```	
 
-### Demo2:  Using MiSeq to generate metagenomics data
-
-- Five miseq paired fastq files
-
+### Using MiSeq platform
 ```{}
 iss generate \
 	--ncbi bacteria viruses archaea -U 10 0 2 \
@@ -834,9 +766,7 @@ iss generate \
 	
 ```	
 	
-### Demo3: UsingbHiSeq to generate metagenomics data
-
-- Five hiseq paired fastq files
+### Using HiSeq  platform
 
 ```{}
 iss generate \
@@ -884,7 +814,7 @@ iss generate \
 
 <br>
 
-# How to Resize Fastq Files {#resizing-fastq}
+## Resizing Fastq Files {#resize-fastq}
 - Sometimes we want to extract a small subset to test the bioinformatics pipeline.
 - You can resize the fastq files using the `seqkit sample` function [@Shen2016; @seqkit2022].
 - Below is a demo for extracting only 0.1% of the sequencing data.
@@ -903,49 +833,43 @@ for i in {706..761}
 
 ```
 
+
+
 <!--chapter:end:01d_sequencing_data.Rmd-->
 
-# (PART) BIOINFORMATICS PIPELINES {-}
+# Bioinformatics Pipelines
 
-# Microbiome Pipelines for 16S rRNA {#bioinfo-16s}
-In this guide we will install or highlight tools of interest for bioinformatics analysis of 16S rRNA gene sequencing data.  Make sure to check for latest instructions online.
-
-## Mothur Pipeline
+## Mothur pipeline
 - Mothur is an open-source software package for bioinformatics data processing.
 - It is a very famous platform comprised of over 145 tools that can be integrated to for a desired pipeline. 
 - Mothur has a [basic tutorial](https://mothur.org/wiki/miseq_sop/) that help users get started with 16S rRNA gene analysis. 
 - We can download a stable platform from [here](https://github.com/mothur/mothur/releases/).
 
-## QIIME2 Pipeline
+## QIIME2 pipeline
 - QIIME2 is an open-source microbiome analysis platform with integrated software for quality control such as DADA2.
 - It is a very famous platform with an active community forum. 
 - QIIME2 has [profound tutorials](https://docs.qiime2.org/2022.2/tutorials/) that help users get started with 16S rRNA gene analysis. 
 - We can instal the latest version from [here](https://docs.qiime2.org/2022.2/install/).
 
-
 ## Nephele Platform
-- Nephele is an open, accessible high performmance cloud platform platform for microbial bioinformatics. 
+- Nephele is an open, accessible high performance cloud platform platform for microbial bioinformatics. 
 - Nephele integrates Mothur, QIIME2, DADA2 and Biobakery
 - For more details see some of their [tutorials](https://nephele.niaid.nih.gov/user_guide/) and useful [user guide](https://nephele.niaid.nih.gov/user_guide/).
 
+## Keaddata pipeline
+- Keaddata is an open-source pipeline for quality controll of metagenomic sequencing data.
+- Keaddata [tutorial](https://github.com/biobakery/biobakery/wiki/kneaddata) provide a step-by-step guidance in preprocessing metagenomics data. 
+## MetaPhlAn pipeline
+- MetaPhlAn is an open-source pipeline for taxonomic profiling from metagenomic shotgun sequencing data.
+- MetaPhlAn [tutorial](https://github.com/biobakery/biobakery/wiki/metaphlan3) provide a step-by-step guidance for taxonomic profiling from different environmental samples.
 
-# Microbiome Pipelines for Metagenomics {#bioinfo-metagenomics}
-The installation instruction of various pipeline is found [here](https://github.com/biobakery/biobakery/wiki). See the table below for specific software.
-
-| Pipeline | Description | Tutorial |
-|-----------|-----------------|----------------------|
-| Keaddata | Quality controll on metagenomic sequencing data | [Tutorial](https://github.com/biobakery/biobakery/wiki/kneaddata)  |
-| MetaPhlAn | Taxonomic Profiling from metagenomic shotgun sequencing data| [Tutorial](https://github.com/biobakery/biobakery/wiki/metaphlan3)  |
-| HumanN  | Functional Profiling from metagenomic sequencing data | [Tutorial](https://github.com/biobakery/biobakery/wiki/humann3)  |
-||| 
-
-
+## HumanN pipeline
+- HumanN is an open-source pipeline for functional profiling from metagenomic sequencing data.
+- HumanN [tutorial](https://github.com/biobakery/biobakery/wiki/humann3) provide a step-by-step guidance for functional profiling.
 
 <!--chapter:end:01e_bioinfo_pipelines.Rmd-->
 
-# (PART) MAPPING FILES {-}
-
-# Preparing Mapping Files
+# Mapping Files
 The mapping files are require to direct the pipeline where to look for the files containing the sequencing data.
 
 - The format of the mapping files for `mothur` and `QIIME2` pipelines is slightly different. 

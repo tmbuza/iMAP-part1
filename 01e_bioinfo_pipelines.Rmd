@@ -1,35 +1,29 @@
-# (PART) BIOINFORMATICS PIPELINES {-}
+# Bioinformatics Pipelines
 
-# Microbiome Pipelines for 16S rRNA {#bioinfo-16s}
-In this guide we will install or highlight tools of interest for bioinformatics analysis of 16S rRNA gene sequencing data.  Make sure to check for latest instructions online.
-
-## Mothur Pipeline
+## Mothur pipeline
 - Mothur is an open-source software package for bioinformatics data processing.
 - It is a very famous platform comprised of over 145 tools that can be integrated to for a desired pipeline. 
 - Mothur has a [basic tutorial](https://mothur.org/wiki/miseq_sop/) that help users get started with 16S rRNA gene analysis. 
 - We can download a stable platform from [here](https://github.com/mothur/mothur/releases/).
 
-## QIIME2 Pipeline
+## QIIME2 pipeline
 - QIIME2 is an open-source microbiome analysis platform with integrated software for quality control such as DADA2.
 - It is a very famous platform with an active community forum. 
 - QIIME2 has [profound tutorials](https://docs.qiime2.org/2022.2/tutorials/) that help users get started with 16S rRNA gene analysis. 
 - We can instal the latest version from [here](https://docs.qiime2.org/2022.2/install/).
 
-
 ## Nephele Platform
-- Nephele is an open, accessible high performmance cloud platform platform for microbial bioinformatics. 
+- Nephele is an open, accessible high performance cloud platform platform for microbial bioinformatics. 
 - Nephele integrates Mothur, QIIME2, DADA2 and Biobakery
 - For more details see some of their [tutorials](https://nephele.niaid.nih.gov/user_guide/) and useful [user guide](https://nephele.niaid.nih.gov/user_guide/).
 
+## Keaddata pipeline
+- Keaddata is an open-source pipeline for quality controll of metagenomic sequencing data.
+- Keaddata [tutorial](https://github.com/biobakery/biobakery/wiki/kneaddata) provide a step-by-step guidance in preprocessing metagenomics data. 
+## MetaPhlAn pipeline
+- MetaPhlAn is an open-source pipeline for taxonomic profiling from metagenomic shotgun sequencing data.
+- MetaPhlAn [tutorial](https://github.com/biobakery/biobakery/wiki/metaphlan3) provide a step-by-step guidance for taxonomic profiling from different environmental samples.
 
-# Microbiome Pipelines for Metagenomics {#bioinfo-metagenomics}
-The installation instruction of various pipeline is found [here](https://github.com/biobakery/biobakery/wiki). See the table below for specific software.
-
-| Pipeline | Description | Tutorial |
-|-----------|-----------------|----------------------|
-| Keaddata | Quality controll on metagenomic sequencing data | [Tutorial](https://github.com/biobakery/biobakery/wiki/kneaddata)  |
-| MetaPhlAn | Taxonomic Profiling from metagenomic shotgun sequencing data| [Tutorial](https://github.com/biobakery/biobakery/wiki/metaphlan3)  |
-| HumanN  | Functional Profiling from metagenomic sequencing data | [Tutorial](https://github.com/biobakery/biobakery/wiki/humann3)  |
-||| 
-
-
+## HumanN pipeline
+- HumanN is an open-source pipeline for functional profiling from metagenomic sequencing data.
+- HumanN [tutorial](https://github.com/biobakery/biobakery/wiki/humann3) provide a step-by-step guidance for functional profiling.

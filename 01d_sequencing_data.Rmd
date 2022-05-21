@@ -1,6 +1,4 @@
-# (PART) SEQUENCING DATA {-}
-
-# Raw Read Fastq Sequences {#raw-data}
+# Sequencing Data {#raw-data}
 
 Read sequencing data may be obtained from different sources. The most common ones include:
 
@@ -53,7 +51,7 @@ vdb-config -i
 
 For more information click [here](https://github.com/ncbi/sra-tools/wiki/03.-Quick-Toolkit-Configuration).
 
-## Downloading the fastq files
+### Downloading the fastq files
 - Be sure that the `fasterq-dump` is in the path.
 - Type `which fasterq-dump` to confirm if is in the path.
 - Use the absolute path like `~/sratoolkit.3.0.0-mac64/bin/fasterq-dump` if the executable file is not in the path.
@@ -75,15 +73,12 @@ for (( i = 706; i <= 761; i++ ))
 ```
 
 
-# How to Synthesize Metagenomics Reads {#synthetic-reads}
+## Synthetic metagenomics Reads {#synthetic-reads}
 - Most `insilico` data is used for testing software before using real data.
 - Generating `insilico` data can be challenging but not can provide a starting data for testing some pipelines.
 - Below is a demo for generating NovaSeq, MiSeq and HiSeq `insilico` sequencing data.
 
-### Demo1: Using NovaSeq to generate metagenomics data
-
-- Five novaseq paired fastq files
-
+### Using NovaSeq platform
 ```{}
 iss generate \
 	--ncbi bacteria viruses archaea -U 15 0 2 \
@@ -128,10 +123,7 @@ iss generate \
 	
 ```	
 
-### Demo2:  Using MiSeq to generate metagenomics data
-
-- Five miseq paired fastq files
-
+### Using MiSeq platform
 ```{}
 iss generate \
 	--ncbi bacteria viruses archaea -U 10 0 2 \
@@ -176,9 +168,7 @@ iss generate \
 	
 ```	
 	
-### Demo3: UsingbHiSeq to generate metagenomics data
-
-- Five hiseq paired fastq files
+### Using HiSeq  platform
 
 ```{}
 iss generate \
@@ -226,7 +216,7 @@ iss generate \
 
 <br>
 
-# How to Resize Fastq Files {#resizing-fastq}
+## Resizing Fastq Files {#resize-fastq}
 - Sometimes we want to extract a small subset to test the bioinformatics pipeline.
 - You can resize the fastq files using the `seqkit sample` function [@Shen2016; @seqkit2022].
 - Below is a demo for extracting only 0.1% of the sequencing data.
@@ -244,3 +234,5 @@ for i in {706..761}
   done
 
 ```
+
+

@@ -1,6 +1,4 @@
-# (PART) SAMPLE METADATA {-}
-
-# Microbiome Sample Metadata {#sample-metadata}
+# Sample Metadata {#sample-metadata}
 
 ## What is metadata?
 * <b>Metadata</b> is a set of data that describes and provides information about other data. It is commonly defined as **data about data**.
@@ -20,7 +18,7 @@
 
 <br>
 
-# Sample Metadata profiling {#metadata-profiling}
+## Metadata profiling {#metadata-profiling}
 ```{block, type="tmbinfo", echo=TRUE}
 Typically, after sequencing the microbiome DNA, the investigators are encouraged to deposit the sequence reads in a public repository. The Sequence Read Archive (SRA) is currently the best bioinformatics database for read information. The good thing about SRA is that it integrates data from the NCBI, the European Bioinformatics Institute (EBI), and the DNA Data Bank of Japan (DDBJ). 
 
@@ -34,32 +32,33 @@ Here we profile metadata associated with the bushmeat microbiome bioproject numb
   - how to manipulate and create a tidy metadata.
   - how to filter and select desired metadata for integrating with downstream analyses.
   
-## Downloading metadata using the NCBI-SRA run selector
-- In this demo we will save the metadata in a folder names `data`. So, let's create the folder (if it doesn't exist!). 
+### Downloading metadata from NCBI-SRA
+- Note that the SRA filename for metadata is automatically named `SraRunTable.txt`.
+- We will save the metadata file in a folder named `data`.
+- Let's create `a`data` folder (if it doesn't exist!). 
 
 ```{r}
 if (!dir.exists("data")) {dir.create("data")}
 ```
 
-> Note that the SRA filename for metadata is automatically named `SraRunTable.txt`...see the figure below for more guidance.
 
 
 ![Screen shot of SRA Run Selector for metadata associated with the NCBI-SRA bioproject number PRJNA477349](images/sra_run_selector.png){width=100%}
 
 <br>
 
-## Loading metadata into R environment
+### Loading metadata into R environment
 ```{r warning=FALSE}
 library(tidyverse)
 sraruntable <- read_delim("data/SraRunTable.txt", show_col_types = FALSE)
 ```
 
-## How many rows and columns
+### How many rows and columns
 ```{r}
 paste("There are", dim(sraruntable)[1], "rows and", dim(sraruntable)[2],"columns in this metadata")
 ```
 
-## Column names
+### Column names
 Getting a clear knowledge about the variables associated with a sample metadata can help in filtering the most important features.
  
 ```{r}
@@ -163,8 +162,8 @@ metadata %>%
 
 <br>
 
-# Locating sample collection points {#sample-location}
-## Interactive map 
+## Locating sample collection points {#sample-location}
+### Interactive map 
 - The [`leaflet`](https://rstudio.github.io/leaflet/) R package can do a great job in dropping a pin on the corresponding coordinate. 
 - Note that samples collected on the same coordinate will overlap. 
 - You can zoom in-out to expand or minimize the map. 
@@ -195,7 +194,7 @@ metadata %>%
 
 <br>
 
-## Example of screenshots from zoom in-out
+### Example of screenshots from zoom in-out
 
 ![World map: Geographical location of sample collection points.](images/loc_on_world_map.png){ width=60% }
 
