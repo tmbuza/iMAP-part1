@@ -1,6 +1,6 @@
 ---
-title: "End-to-End Microbiome Data Analysis in R"
-subtitle: "PART 1: Preparing for Microbiome Data Analysis"
+title: "How to Get Started with Microbiome Data Analysis in R"
+subtitle: "End-to-End Microbiome Data Analysis User Guides"
 author: "Teresia Mrema-Buza, A Microbiome Computational Scientist and Owner of the Complex Data Insights, LLC, USA"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
@@ -9,63 +9,12 @@ output:
   bookdown::bs4_book:
     includes:
       in_header:
-        
-  bookdown::gitbook:
-    includes:
-      in_header: header.html
-    config: 
-      toc:
-       collapse: 
-      search: yes
-      fontsettings:
-        size: 2
-    split_by: section
-    split_bib: no
-    df_print: paged
-    number_sections: true
-    css:
-    - css/style.css
-    - style.css
-    
-  html_document:
-    code_folding: hide
-    
-  bookdown::html_document2:
-    code_folding: hide
-    
-  bookdown::pdf_book:
-    config:
-      toc = true
-      toc_depth = 2
-      number_sections = true
-      fig_caption = true
-      keep_tex = no
-      pandoc_args = null
-      toc_unnumbered = no
-      toc_appendix = no
-      toc_bib = no 
-      quote_footer = null
-      highlight_bw = true
-      latex_engine = xelatex
-      df_print = kable
-      base_format = rmarkdown::pdf_document
-  includes:
-    in_header: 
-    - latex/header.tex
-    - latex/preamble.tex
+    template: bs4_part1_template.html
 documentclass: book
 classoption: openany #remove empty pages in pdf doc
-bibliography:
-- library/book.bib
-- library/packages.bib
-- library/microbiome.bib
-- library/software.bib 
-citation_package:
-- natbib
-- biblatex
-- amsplain
 colorlinks: true
 css:
+- style.css
 - css/style.css
 always_allow_html: true
 fig_caption: true
@@ -76,16 +25,6 @@ keep_tex: true
 link-citations: true
 mainfont: Times New Roman
 biblio-style: apalike
-spacing: double
-header-includes: 
-- \usepackage{setspace}
-- \newpage
-- \newenvironment{tmbinfo}[0]{}{}
-- \renewenvironment{tmbinfo}[0]{}{}
-- \newenvironment{tmbalert}[0]{}{}
-- \renewenvironment{tmbalert}[0]{}{}
-- \newenvironment{tmbshare}[0]{}{}
-- \renewenvironment{tmbshare}[0]{}{}
 description: |
   This is a practical user's guide for **Systematic Microbiome Data Analysis in R**. The guide provides integrated and highly curated solutions for achieving better results.
 ---

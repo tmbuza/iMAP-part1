@@ -1,4 +1,4 @@
-# Processing Tools {#preprocessing-tools}
+# Preprocessing Tools {#preprocessing-tools}
 
 There several tools out there that can help in preprocessing raw read. Listed below are some of most common tools used in understanding the characteristics of the read and their quality scores. Click on the hyperlinked tool to learn more how to install it.
 

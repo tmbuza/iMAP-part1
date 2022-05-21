@@ -1,10 +1,14 @@
 # Bioinformatics Pipelines
 
+
+
 ## Mothur pipeline
 - Mothur is an open-source software package for bioinformatics data processing.
 - It is a very famous platform comprised of over 145 tools that can be integrated to for a desired pipeline. 
 - Mothur has a [basic tutorial](https://mothur.org/wiki/miseq_sop/) that help users get started with 16S rRNA gene analysis. 
 - We can download a stable platform from [here](https://github.com/mothur/mothur/releases/).
+
+
 
 ## QIIME2 pipeline
 - QIIME2 is an open-source microbiome analysis platform with integrated software for quality control such as DADA2.
@@ -12,17 +16,26 @@
 - QIIME2 has [profound tutorials](https://docs.qiime2.org/2022.2/tutorials/) that help users get started with 16S rRNA gene analysis. 
 - We can instal the latest version from [here](https://docs.qiime2.org/2022.2/install/).
 
+
+
 ## Nephele Platform
 - Nephele is an open, accessible high performance cloud platform platform for microbial bioinformatics. 
 - Nephele integrates Mothur, QIIME2, DADA2 and Biobakery
 - For more details see some of their [tutorials](https://nephele.niaid.nih.gov/user_guide/) and useful [user guide](https://nephele.niaid.nih.gov/user_guide/).
 
+
+
 ## Keaddata pipeline
 - Keaddata is an open-source pipeline for quality controll of metagenomic sequencing data.
-- Keaddata [tutorial](https://github.com/biobakery/biobakery/wiki/kneaddata) provide a step-by-step guidance in preprocessing metagenomics data. 
+- Keaddata [tutorial](https://github.com/biobakery/biobakery/wiki/kneaddata) provide a step-by-step guidance in preprocessing metagenomics data.
+
+
+
 ## MetaPhlAn pipeline
 - MetaPhlAn is an open-source pipeline for taxonomic profiling from metagenomic shotgun sequencing data.
 - MetaPhlAn [tutorial](https://github.com/biobakery/biobakery/wiki/metaphlan3) provide a step-by-step guidance for taxonomic profiling from different environmental samples.
+
+
 
 ## HumanN pipeline
 - HumanN is an open-source pipeline for functional profiling from metagenomic sequencing data.
