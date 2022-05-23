@@ -1,6 +1,6 @@
 ---
 title: "How to Get Started with Microbiome Data Analysis in R"
-subtitle: "End-to-End Microbiome Data Analysis User Guides"
+subtitle: "End-to-End Practical User Guides"
 author: "Teresia Mrema-Buza, A Microbiome Computational Scientist and Owner of the Complex Data Insights, LLC, USA"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
@@ -83,13 +83,13 @@ I [label = 'Mapping Files']
 }", height = 400, width = 600)
 
 # 2. Convert to SVG, then save as png
-part1 = DiagrammeRsvg::export_svg(graph)
-part1 = charToRaw(part1) # flatten
-rsvg::rsvg_png(part1, "img/part1.png")
+part1_flow = DiagrammeRsvg::export_svg(graph)
+part1_flow = charToRaw(part1_flow) # flatten
+rsvg::rsvg_png(part1_flow, "img/part1_flow.png")
 ```
 
 
-<a href=""><img src="images/part1_6-tiers.png" alt="Book cover" width="100%" style="padding: 50px 0px 100px 0px; float: right;"/></a>
+<a href=""><img src="images/part1_bavel.png" alt="Book cover" width="100%" style="padding: 50px 0px 100px 0px; float: right;"/></a>
 
 ## Quick Glimpse {-}
 Investigating the role of microbial communities in health and disease requires a thorough knowledge of the entire analytical process. Using wrong approaches can cost a significant amount of dollars and lengthy process to achieve the desired results. This is <b>PART 1</b> of the practical user guides intended to provide analytical support to the microbiome research community. The entire guide is reproducible, allowing users to easily follow along. If interested, user may use this model to publish their findings in a book format.
@@ -101,6 +101,8 @@ This guide is divided into chapters to facilitate easy navigation. Each chapter 
 The code is available at a public [GitHub repository](https://github.com/tmbuza/microbiome-part1/). If interested you can request a consulting service by contacting the developer of this repo using <a href="https://complexdatainsights.com/contact-us">this contact form</a>. 
 
 <!--chapter:end:index.Rmd-->
+
+# (PART) GETTING STARTED {-}
 
 # Basic Software
 
@@ -931,6 +933,7 @@ read_tsv("data/q2-pe-33-manifest.tsv") %>%
   select(sample_id = "sample-id") %>% 
   inner_join(., readRDS("RDataRDS/metadata.rds"), by = "sample_id") %>% 
   rename("sample-id" = sample_id) %>%
+  select("sample-id", ecosystem, isolate, description) %>% 
   write_tsv("data/q2-metadata.tsv")
   # saveRDS("RDataRDS/q2-metadata.rds")
 
