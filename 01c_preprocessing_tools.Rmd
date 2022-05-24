@@ -50,6 +50,11 @@ rm BBMap_37.90.tar.gz
 > Note that the links for each tool may be outdated. Make sure to check for latest instructions online.
 
 
+## Keaddata for integrated quality control
+- Keaddata is an open-source pipeline for preprocessing metagenomic sequencing data.
+- Keaddata [tutorial](https://github.com/biobakery/biobakery/wiki/kneaddata) provide a step-by-step guidance in preprocessing metagenomics data.
+
+
 
 
 

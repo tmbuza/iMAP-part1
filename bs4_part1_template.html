@@ -96,11 +96,12 @@
       </form>
 
       <nav aria-label="Table of contents">
-        <h2>Table of contents</h2>
+        <br>
+        <!--<h2>Table of contents</h2>-->
         <div id="book-toc"></div>
 
         <div class="book-extra">
-          <p><a id="book-repo" href="#">View book source <i class="fab fa-github"></i></a></li></p>
+          <p><a id="book-repo" href="#">View book source <i class="fab fa-github"></i></a></p>
         </div>
       </nav>
     </div>
@@ -141,9 +142,9 @@ $endfor$
     <div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p><strong>$title$</strong> is PART 1 of the $if(subtitle)$<a class="text-light" href="https://complexdatainsights.com/books/microbiome-analysis-in-R/"><u>$subtitle$$endif$</u></a> written by $for(author)$$author$$sep$, $endfor$. 
+    <p><strong>$title$</strong> is PART 1 of the $if(subtitle)$<a class="text-light" href="https://complexdatainsights.com/books/microbiome-analysis-in-R/"><u>$subtitle$$endif$</u></a> written by $for(author)$$author$$sep$, $endfor$. $if(date)$It was last built on $date$.$endif$</p>
   </div>
-
+  
   <div class="col-12 col-md-6 mt-3">
     <p>This guide was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
   </div>

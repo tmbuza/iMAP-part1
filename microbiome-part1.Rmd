@@ -1,5 +1,5 @@
 ---
-title: "How to Get Started with Microbiome Data Analysis in R"
+title: "How to Prepare for Microbiome Data Analysis"
 subtitle: "End-to-End Practical User Guides"
 author: "Teresia Mrema-Buza, A Microbiome Computational Scientist and Owner of the Complex Data Insights, LLC, USA"
 date: "`r Sys.Date()`"
@@ -40,7 +40,7 @@ knitr::write_bib(c(
 source(file = "R/common.R")
 ```
 
-# Getting Started with Microbiome Data Analysis in R {-#frontpage}
+# Getting Started with Microbiome Data Analysis {-#frontpage}
 
 ```{r include=FALSE}
 library(DiagrammeR)
@@ -531,6 +531,11 @@ rm BBMap_37.90.tar.gz
 > Note that the links for each tool may be outdated. Make sure to check for latest instructions online.
 
 
+## Keaddata for integrated quality control
+- Keaddata is an open-source pipeline for preprocessing metagenomic sequencing data.
+- Keaddata [tutorial](https://github.com/biobakery/biobakery/wiki/kneaddata) provide a step-by-step guidance in preprocessing metagenomics data.
+
+
 
 
 
@@ -780,46 +785,57 @@ for i in {706..761}
 
 # Bioinformatics Pipelines
 
-
-
-## Mothur pipeline
+## Mothur pipeline 
+- Most famous for profiling microbial composition from 16S rRNA sequencing data.
 - Mothur is an open-source software package for bioinformatics data processing.
 - It is a very famous platform comprised of over 145 tools that can be integrated to for a desired pipeline. 
 - Mothur has a [basic tutorial](https://mothur.org/wiki/miseq_sop/) that help users get started with 16S rRNA gene analysis. 
 - We can download a stable platform from [here](https://github.com/mothur/mothur/releases/).
 
-
-
 ## QIIME2 pipeline
+- Most famous for profiling microbial composition from 16S rRNA sequencing data.
 - QIIME2 is an open-source microbiome analysis platform with integrated software for quality control such as DADA2.
 - It is a very famous platform with an active community forum. 
 - QIIME2 has [profound tutorials](https://docs.qiime2.org/2022.2/tutorials/) that help users get started with 16S rRNA gene analysis. 
-- We can instal the latest version from [here](https://docs.qiime2.org/2022.2/install/).
+- We can install the latest version from [here](https://docs.qiime2.org/2022.2/install/).
 
 
-
-## Nephele Platform
-- Nephele is an open, accessible high performance cloud platform platform for microbial bioinformatics. 
-- Nephele integrates Mothur, QIIME2, DADA2 and Biobakery
-- For more details see some of their [tutorials](https://nephele.niaid.nih.gov/user_guide/) and useful [user guide](https://nephele.niaid.nih.gov/user_guide/).
-
-
-
-## Keaddata pipeline
-- Keaddata is an open-source pipeline for quality controll of metagenomic sequencing data.
-- Keaddata [tutorial](https://github.com/biobakery/biobakery/wiki/kneaddata) provide a step-by-step guidance in preprocessing metagenomics data.
-
-
-
-## MetaPhlAn pipeline
+## MetaPhlAn standalone pipeline
 - MetaPhlAn is an open-source pipeline for taxonomic profiling from metagenomic shotgun sequencing data.
 - MetaPhlAn [tutorial](https://github.com/biobakery/biobakery/wiki/metaphlan3) provide a step-by-step guidance for taxonomic profiling from different environmental samples.
 
 
+## MetaPhlAn within HUMAnN pipeline
+- HUMAnN (the HMP Unified Metabolic Analysis Network) is an open-source pipeline for functional profiling from metagenomic sequencing data.
+- HUMAnN [tutorial](https://github.com/biobakery/biobakery/wiki/humann3) provide a step-by-step guidance for functional profiling.
 
-## HumanN pipeline
-- HumanN is an open-source pipeline for functional profiling from metagenomic sequencing data.
-- HumanN [tutorial](https://github.com/biobakery/biobakery/wiki/humann3) provide a step-by-step guidance for functional profiling.
+
+## Demo installing MetaPhlAn and HUMAnN
+- We will demonstrate how to create a new environment named `biobakery3` and install MetaPhlAn and HUMAnN pipelines.
+
+```{block, type="tmbinfo", echo=T}
+Note: When installing HUMAnN e.g using `conda` it will also automatically install MetaPhlAn for microbial profiling. But having a standalone MetaPhlAn pipeline can be useful when your interest is in microbial profiling rather than functional profiling. 
+```
+
+
+```bash
+conda create --name biobakery3 python=3.9
+conda activate biobakery3
+
+# Set conda channel priority:
+conda config --add channels defaults
+conda config --add channels bioconda
+conda config --add channels conda-forge
+conda config --add channels biobakery
+
+conda install humann -c biobakery
+conda install metaphlan -c bioconda.
+
+# Test the installation
+humann_test
+
+```
+
 
 <!--chapter:end:01e_bioinfo_pipelines.Rmd-->
 
@@ -975,7 +991,7 @@ rdata
 ## CSV or TSV Format Files
 ```{r}
 
-list.files(path="./data", pattern = "*.csv|tsv", full.names = TRUE)
+list.files(path="./RDataRDS", pattern = "*.csv|tsv", full.names = TRUE)
 
 ```
 
@@ -1009,14 +1025,6 @@ lsdata("RDataRDS/saved_objects.RData")
 * `rmarkdown` (v. `r packageVersion("rmarkdown")`)
 * `bookdown` (v. `r packageVersion("bookdown")`)
 
-<!-- * `ggpubr` (v. `r packageVersion("ggpubr")`) -->
-<!-- * `downlit` (v. `r packageVersion("downlit")`) -->
-<!-- * `phyloseq` (v. `r packageVersion("phyloseq")`) -->
-<!-- * `ape` (v. `r packageVersion("ape")`) -->
-<!-- * `ggtext` (v. `r packageVersion("ggtext")`) -->
-<!-- * `dendextend` (v. `r packageVersion("dendextend")`) -->
-<!-- * `metagMisc` (v. `r packageVersion("metagMisc")`) -->
-<!-- * `cgwtools` (v. `r packageVersion("cgwtools")`) -->
 
 ## Available on machine used 
 ```{r}
