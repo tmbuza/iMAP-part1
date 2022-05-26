@@ -61,26 +61,25 @@ penwidth = 2.0]
 
 edge [arrowhead = diamond]
 
-A [label = 'Getting Started', fillcolor = white, penwidth = 5.0]
-B [label = 'Requirements']
+A [label = 'GETTING STARTED', fillcolor = white, penwidth = 5.0]
+B [label = 'Basic Requirements']
 C [label = 'Basic Software']
 D [label = 'Sample Metadata']
 E [label = 'Sequencing Data']
-F [label = 'Analysis & Visualization Tools']
-G [label = 'Preprocessing Tools']
-H [label = 'Bioinformatics Pipelines']
-I [label = 'Mapping Files']
+F [label = 'Preprocessing Tools']
+G [label = 'Bioinformatics Pipelines']
+H [label = 'Mapping Files']
 
 {A}  -> B
 {B}  -> C
 {B}  -> D
 {B}  -> E
-{C}  -> F
-{C}  -> G
-{C}  -> H
-{B}  -> I
+{B}  -> F
+{B}  -> G
+{B}  -> H
 
-}", height = 400, width = 600)
+
+}", height = 600, width = 600)
 
 # 2. Convert to SVG, then save as png
 part1_flow = DiagrammeRsvg::export_svg(graph)
