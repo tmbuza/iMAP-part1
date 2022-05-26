@@ -4,7 +4,7 @@
 
 ![Workflow for getting started with microbiome data analysis.](img/part1_flow.png)
 
-The iMAP-PART1 is one of the practical user guide series]</strong> for supporting the <a class="text-light" href="https://complexdatainsights.com/books/microbiome-analysis/end-to-end-user-guide/">Systematic Microbiome Data Analysis (SMDA)</a> beyond the traditional approaches. 
+The iMAP-PART1 is one of the practical user guide series for supporting the <a class="text-light" href="https://complexdatainsights.com/books/microbiome-analysis/end-to-end-user-guide/">Systematic Microbiome Data Analysis (SMDA)</a> beyond the traditional approaches. 
 
 ## Related resources
 
