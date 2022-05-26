@@ -4,7 +4,7 @@
 
 ![Workflow for getting started with microbiome data analysis.](img/part1_flow.png)
 
-The <strong>iMAP-PART1</strong> is one of the practical user guide for providing analytical support to the microbiome research community. Explore more guides from the table below:
+The <strong>iMAP-PART1</strong> is one of the practical user guides for providing analytical support to the microbiome research community. Explore more guides from the table below:
 
 ## Related resources
 
