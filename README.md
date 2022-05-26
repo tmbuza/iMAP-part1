@@ -4,13 +4,14 @@
 
 ![Workflow for getting started with microbiome data analysis.](img/part1_flow.png)
 
-The iMAP-PART1 is one of the practical user guide series for supporting the <a class="text-light" href="https://complexdatainsights.com/books/microbiome-analysis/end-to-end-user-guide/">Systematic Microbiome Data Analysis (SMDA)</a> beyond the traditional approaches. 
+The <strong>iMAP-PART1</strong> is one of the practical user guide for providing analytical support to the microbiome research community. Explore more guides from the table below:
 
 ## Related resources
 
 |Code| Description| Glimpse | Report |
 |--------------------|---------------------------------------------|-----------|-------|
 |[iMAP-PART1](https://github.com/tmbuza/microbiome-part1/) | How to Get Started with Microbiome Data Analysis |[GH-Page](https://tmbuza.github.io/microbiome-part1/) | [eBook](https://complexdatainsights.com/books/microbiome-analysis/getting-started) |
+|[iMAP-PART2](https://github.com/tmbuza/iMAP-part2/) | Bioinformatics Analysis of Microbiome Data | [GH-Page](https://tmbuza.github.io/iMAP-part2/) | [eBook](https://complexdatainsights.com/books/microbiome-analysis/bioinformatics-analysis) |
 
 
 ## Citation
