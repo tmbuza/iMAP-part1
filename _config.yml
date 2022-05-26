@@ -1,4 +1,6 @@
 theme: jekyll-theme-cayman
-show_downloads: FALSE
-title: Microbioma Data Analysis in R PART 1
+show_downloads: true
+title:
 description: A practical user guide for getting started with microbiome data analysis.
+github:
+  is_project_page: false
