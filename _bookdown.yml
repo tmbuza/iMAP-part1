@@ -13,6 +13,7 @@ rmd_files: [
 "01d_sequencing_data.Rmd",
 "01e_bioinfo_pipelines.Rmd",
 "01f_mapping_files.Rmd",
+"01g_metadata_profiling.Rmd",
 "99_appendix.Rmd",
 "999-references.Rmd"
 ]
