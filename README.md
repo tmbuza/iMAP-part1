@@ -11,3 +11,8 @@ The **Systematic Microbiome Data Analytics (SMDA)** practical user guides are se
 |Code| Description| Glimpse | Report |
 |--------------------|---------------------------------------------|-----------|-------|
 |[PART 1](https://github.com/tmbuza/microbiome-part1/) | How to Get Started with Microbiome Data Analysis |[GH-Page](https://tmbuza.github.io/microbiome-part1/) | [eBook](https://complexdatainsights.com/books/microbiome-analysis/getting-started) |
+
+
+## Citation
+Teresia M. Buza, Triza Tonui, Francesca Stomeo, Christian Tiambo, Robab Katani, Megan Schilling, Beatus Lyimo, Paul Gwakisa, Isabella M. Cattadori, Joram Buza and Vivek Kapur. iMAP: an integrated bioinformatics and visualization pipeline for microbiome data analysis. BMC Bioinformatics (2019) 20:374. [Free Full Text](https://rdcu.be/b5iVj).
+
