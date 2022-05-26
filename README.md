@@ -10,4 +10,4 @@ The **Systematic Microbiome Data Analytics (SMDA)** practical user guides are se
 
 |Code| Description| GH-Page | Report |
 |--------------------|---------------------------------------------|-----------|-------|
-|[PART 1](https://github.com/tmbuza/microbiome-part1/) | How to Get Started with Microbiome Data Analysis |[GH-Page PART 1]https://tmbuza.github.io/microbiome-part1/| [eBook](https://complexdatainsights.com/books/microbiome-analysis/getting-started) |
+|[PART 1](https://github.com/tmbuza/microbiome-part1/) | How to Get Started with Microbiome Data Analysis |[GH-Page PART 1](https://tmbuza.github.io/microbiome-part1/) | [eBook](https://complexdatainsights.com/books/microbiome-analysis/getting-started) |
