@@ -1,7 +1,7 @@
 ---
-title: "How to Prepare for Microbiome Data Analysis"
-subtitle: "End-to-End Practical User Guides"
-author: "Teresia Mrema-Buza, A Microbiome Computational Scientist and Owner of the Complex Data Insights, LLC, USA"
+title: "How to Get Started with Microbiome Data Analysis"
+subtitle: "Systematic Microbiome Data Analysis (SMDA) User Guides"
+author: "Teresia Mrema-Buza, A Microbiome Data Scientist and Owner of the Complex Data Insights, LLC, USA"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 knit: bookdown::render_book
