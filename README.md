@@ -1,4 +1,4 @@
-# iMAP-PART1<br>How to Get Started with Microbiome Data Analysis
+# How to Get Started with Microbiome Data Analysis
 
 <br>
 
