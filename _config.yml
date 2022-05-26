@@ -3,4 +3,4 @@ show_downloads: true
 title:
 description: A practical user guide for getting started with microbiome data analysis.
 github:
-  is_project_page: false
+  is_project_page: true
