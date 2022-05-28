@@ -143,7 +143,7 @@ metadata %>%
   labs(x = "Animal Name", y = "Read size (milion bases)") +
   theme_light()  + 
   nolegend +
- axislayout
+  axislayout
 ```
 
 <br>
