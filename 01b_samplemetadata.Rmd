@@ -85,6 +85,7 @@ metadata <- sraruntable %>%
   select(sample_id, ecosystem, isolate, latitude, longitude, milionbases=bases, description)
 
 saveRDS(metadata, "RDataRDS/metadata.rds")
+resave(metadata, file = "~/Dropbox/CDILLC/GIT_REPOS/smda-end2end/RDataRDS/saved_objects.RData")
 ```
 
 ## View compact structure
