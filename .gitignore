@@ -11,5 +11,3 @@ global
 RDataRDS
 _book
 R/cover.R
-
-microbiome-part1.Rmd
