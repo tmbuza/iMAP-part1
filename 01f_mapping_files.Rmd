@@ -29,13 +29,14 @@ seqkit stat *.fastq.gz >data/stats1/seqkit_stats.txt
 
 ```
 
-## Mothur mapping file
+## Mapping file for `mothur` pipeline
 The mapping files for use with `mothur` pipeline can be generated automatically if using the whole dataset. However, if you are interested in just a fraction of the files, you can create it manually and specify what to include.
 
 
 ```{r}
+source("R/common.R")
 library(tidyverse)
-read_table("data/stats1/seqkit_stats.txt") %>% 
+mo_mapping_file <- read_table("data/stats1/seqkit_stats.txt", show_col_types = F) %>% 
   mutate(sample_id = str_replace_all(file, ".*/", ""), .before=file) %>% 
   mutate(sample_id = str_replace_all(sample_id, "_\\d?.fastq.gz", "")) %>%
   filter(str_detect(file, "_1" )) %>% 
@@ -46,38 +47,45 @@ read_table("data/stats1/seqkit_stats.txt") %>%
   filter(num_seqs <65000) %>% 
   arrange(num_seqs) %>% 
   ungroup() %>%
-  select(sample_id, forward = file, reverse = file2) %>% 
-  write_tsv("data/mothur_mapping_file.tsv")
-  # saveRDS("RDataRDS/mothur_mapping_file.rds")
+  select(sample_id, forward = file, reverse = file2)
+  
+cat("Dimension\n")
+dim(mo_mapping_file)
+cat("\nStructure\n")
+head(mo_mapping_file) %>% as.data.frame() 
 
-read_tsv("data/mothur_mapping_file.tsv") %>% 
-  as.data.frame()
-
+write_tsv(mo_mapping_file, "RDataRDS/mo_mapping_file.tsv")
+saveRDS(mo_mapping_file, "RDataRDS/mo_mapping_file.rds")
+resave(mo_mapping_file, file = "~/Dropbox/CDILLC/GIT_REPOS/smda-end2end/RDataRDS/saved_objects.RData")
 ```
 
-## Metadata for Mothur pipeline
+## Metadata for `mothur` pipeline
 - Mothur pipeline expects the design (metadata) file to have column headers. 
 - We will extract only the desired number of samples.
 - The first column header should be **group**.
 - For more detail click [here](https://mothur.org/wiki/miseq_sop/).
 
 ```{r}
-read_tsv("data/mothur_mapping_file.tsv") %>% 
+mo_metadata <- read_tsv("RDataRDS/mo_mapping_file.tsv", show_col_types = F) %>% 
   select(sample_id) %>% 
   inner_join(., readRDS("RDataRDS/metadata.rds"), by = "sample_id") %>% 
-  select(group = sample_id, isolate) %>%
-  write_tsv("data/mothur_metadata.tsv")
-  # saveRDS("RDataRDS/mothur_metadata.rds")
+  select(sample_id, ecosystem, isolate, description)
 
-read_tsv("data/mothur_metadata.tsv") %>% 
-  as.data.frame()
+cat("Dimension\n")
+dim(mo_metadata)
+cat("\nStructure\n")
+head(mo_metadata) %>% as.data.frame() 
+
+write_tsv(mo_metadata, "RDataRDS/mo_metadata.tsv")
+saveRDS(mo_metadata, "RDataRDS/mo_metadata.rds")
+resave(mo_metadata, file = "~/Dropbox/CDILLC/GIT_REPOS/smda-end2end/RDataRDS/saved_objects.RData")
 ```
 
-## QIIME2 mapping file
+## Mapping file for `qiime` pipeline
 
 ```{r}
 library(tidyverse)
-read_table("data/stats1/seqkit_stats.txt") %>% 
+q2_mapping_file <- read_table("data/stats1/seqkit_stats.txt", show_col_types = F) %>% 
   mutate(sample_id = str_replace_all(file, ".*/", ""), .before=file) %>% 
   mutate(sample_id = str_replace_all(sample_id, "_\\d?.fastq.gz", "")) %>%
   filter(str_detect(file, "_1" )) %>% 
@@ -90,31 +98,60 @@ read_table("data/stats1/seqkit_stats.txt") %>%
   ungroup() %>% 
   mutate(file = str_replace_all(file, "SRR", "$PWD/SRR")) %>%
   mutate(file2 = str_replace_all(file2, "SRR", "$PWD/SRR")) %>%
-  select("sample-id" = sample_id, "forward-absolute-filepath" = file, "reverse-absolute-filepath" = file2) %>% 
-  write_tsv("data/q2-pe-33-manifest.tsv")
-  # saveRDS("RDataRDS/q2-pe-33-manifest.rds")
-  
-read_tsv("data/q2-pe-33-manifest.tsv") %>% 
-  as.data.frame()
+  select("sample-id" = sample_id, "forward-absolute-filepath" = file, "reverse-absolute-filepath" = file2)
+
+cat("Dimension\n")
+dim(q2_mapping_file)
+cat("\nStructure\n")
+head(q2_mapping_file) %>% as.data.frame() 
+
+write_tsv(q2_mapping_file, "RDataRDS/q2_mapping_file.tsv")
+saveRDS(q2_mapping_file, "RDataRDS/q2_mapping_file.rds")
+resave(q2_mapping_file, file = "~/Dropbox/CDILLC/GIT_REPOS/smda-end2end/RDataRDS/saved_objects.RData")
 ```
 
-## Metadata for QIIME2 pipeline
-- The TSV format is recommended for QIIME2 metadata. For more details click [here](https://docs.qiime2.org/2022.2/tutorials/metadata/).
+## Metadata for `qiime2` pipeline
+- The TSV format is recommended for `qiime2` metadata. For more details click [here](https://docs.qiime2.org/2022.2/tutorials/metadata/).
 - The first column is sample identifier i.e. `sample-id` NOT with underscore like `sample_id`.
 - The command below will replace `sample_id` in the metadata to `sample-id`.
 
 ```{r}
-read_tsv("data/q2-pe-33-manifest.tsv") %>% 
+q2_metadata <- read_tsv("RDataRDS/q2_mapping_file.tsv", show_col_types = F) %>% 
   select(sample_id = "sample-id") %>% 
   inner_join(., readRDS("RDataRDS/metadata.rds"), by = "sample_id") %>% 
   rename("sample-id" = sample_id) %>%
-  select("sample-id", ecosystem, isolate, description) %>% 
-  write_tsv("data/q2-metadata.tsv")
-  # saveRDS("RDataRDS/q2-metadata.rds")
+  select("sample-id", ecosystem, isolate, description)
 
-read_tsv("data/q2-metadata.tsv") %>% 
-  as.data.frame()
+cat("Dimension\n")
+dim(q2_metadata)
+cat("\nStructure\n")
+head(q2_metadata) %>% as.data.frame() 
+
+write_tsv(q2_metadata, "RDataRDS/q2_metadata.tsv")
+saveRDS(q2_metadata, "RDataRDS/q2_metadata.rds")
+resave(q2_metadata, file = "~/Dropbox/CDILLC/GIT_REPOS/smda-end2end/RDataRDS/saved_objects.RData")
 ```
+## Simulated metadata for metagenomics analysis
+```{r}
+source("R/common.R")
 
+filepath = "/Volumes/RedSeagate//SYNTHETIC/microbes/data/*.gz"
 
+m3_metadata <- as.data.frame(Sys.glob(file.path(filepath))) %>%
+  rename(sample_id = colnames(.)[1]) %>%
+  mutate(sample_id = tolower(sample_id),
+         sample_id = str_replace_all(sample_id, ".*/", ""),
+         sample_id = str_replace_all(sample_id, "\\.fast.*", ""),
+         direction = ifelse(str_detect(sample_id, ".*_r1"), "foward", "reverse"), 
+         platform = str_replace_all(sample_id, "_.*", ""),)
+
+cat("Dimension\n")
+dim(m3_metadata)
+cat("\nStructure\n")
+head(m3_metadata) %>% as.data.frame()
+
+write_tsv(m3_metadata, "RDataRDS/m3_metadata.tsv")
+saveRDS(m3_metadata, "RDataRDS/m3_metadata.rds")
+resave(m3_metadata, file = "~/Dropbox/CDILLC/GIT_REPOS/smda-end2end/RDataRDS/saved_objects.RData")
+```
 
