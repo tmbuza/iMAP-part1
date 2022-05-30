@@ -70,7 +70,7 @@ F [label = 'Preprocessing\nTools']
 G [label = 'Bioinformatics\nPipelines']
 H [label = 'Mapping\nFiles']
 I [label = 'Platform-Specific\nTidy Mapping Files', fillcolor = yellow]
-J [label = 'Preprocessed\nTidy Metadata', fillcolor = yellow]
+J [label = 'Preprocessed\nDesired Metadata', fillcolor = yellow]
 
 {A}  -> B
 {B}  -> C
@@ -80,7 +80,7 @@ J [label = 'Preprocessed\nTidy Metadata', fillcolor = yellow]
 {B}  -> G
 {B}  -> H
 {H}  -> I [label = '  Important!']
-{D}  -> J
+{H}  -> J
 
 
 }", height = 600, width = 600)

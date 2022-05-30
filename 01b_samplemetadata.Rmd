@@ -85,6 +85,8 @@ metadata <- sraruntable %>%
   select(sample_id, ecosystem, isolate, latitude, longitude, milionbases=bases, description)
 
 saveRDS(metadata, "RDataRDS/metadata.rds")
+
+save(metadata, file = "RDataRDS/metadata_objects.RData")
 resave(metadata, file = "~/Dropbox/CDILLC/GIT_REPOS/smda-end2end/RDataRDS/saved_objects.RData")
 ```
 
@@ -197,10 +199,3 @@ metadata %>%
 
 ![Site map: Geographical location of sample collection points.](images/loc_on_site_map.png){ width=60% }
 
-
-```{r include=FALSE}
-save(
-  metadata,
-
-  file = "RDataRDS/saved_objects.RData")
-```
