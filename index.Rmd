@@ -69,6 +69,8 @@ E [label = 'Sequencing\nData']
 F [label = 'Preprocessing\nTools']
 G [label = 'Bioinformatics\nPipelines']
 H [label = 'Mapping\nFiles']
+I [label = 'Platform-Specific\Tidy Mapping Files', fillcolor = yellow]
+J [label = 'Preprocessed\nTidy Metadata', fillcolor = yellow]
 
 {A}  -> B
 {B}  -> C
@@ -77,6 +79,8 @@ H [label = 'Mapping\nFiles']
 {B}  -> F
 {B}  -> G
 {B}  -> H
+{H}  -> I [label = '  Important!']
+{D}  -> J [label = '  Important!']
 
 
 }", height = 600, width = 600)
