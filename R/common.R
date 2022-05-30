@@ -6,6 +6,7 @@ if (!dir.exists("data")) {dir.create("data")}
 if (!dir.exists("library")) {dir.create("library")}
 if (!dir.exists("global")) {dir.create("global")}
 if (!dir.exists("images")) {dir.create("images")}
+if (!dir.exists("img")) {dir.create("img")}
 if (!dir.exists("css")) {dir.create("css")}
 if (!dir.exists("RDataRDS")) {dir.create("RDataRDS")}
 if (!dir.exists("figures")) {dir.create("figures")}
