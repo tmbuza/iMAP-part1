@@ -63,25 +63,28 @@ edge [arrowhead = diamond]
 
 A [label = 'GETTING STARTED', fillcolor = white, penwidth = 5.0]
 B [label = 'Basic\nRequirements']
-C [label = 'Basic\nSoftware']
-D [label = 'Sample\nMetadata']
-E [label = 'Sequencing\nData']
-F [label = 'Preprocessing\nTools']
-G [label = 'Bioinformatics\nPipelines']
-H [label = 'Mapping\nFiles']
-I [label = 'Platform-Specific\nTidy Mapping Files', fillcolor = yellow]
-J [label = 'Preprocessed\nDesired Metadata', fillcolor = yellow]
+C [label = 'Basic Software']
+D [label = 'Sample Metadata']
+E [label = 'Sequencing Data']
+F [label = 'Reference Database']
+G [label = 'Analysis & Visualization\nTools']
+H [label = 'Quality Control\nTools']
+I [label = 'Bioinformatics\nPipelines']
+J [label = 'Sample & Sequence \nMapping Files', fillcolor = white]
+K [label = 'Sequence\nAlignments']
+L [label = 'Taxonomy\nClassifiers', fillcolor = white]
 
 {A}  -> B
 {B}  -> C
 {B}  -> D
 {B}  -> E
 {B}  -> F
-{B}  -> G
-{B}  -> H
-{H}  -> I [label = '  Important!']
-{H}  -> J
-
+{B}  -> J #[label = 'Important!']
+{C}  -> G
+{C}  -> H
+{C}  -> I
+{F}  -> K
+{F}  -> L #[label = 'Important!']
 
 }", height = 600, width = 600)
 
@@ -92,7 +95,7 @@ rsvg::rsvg_png(part1_flow, "img/part1_flow.png")
 ```
 
 
-<a href=""><img src="images/part1_bavel.png" alt="Book cover" width="100%" style="padding: 50px 0px 100px 0px; float: right;"/></a>
+<a href=""><img src="img/part1_getting_started.png" alt="Book cover" width="100%" style="padding: 50px 0px 100px 0px; float: right;"/></a>
 
 ## Quick Glimpse {-}
 Investigating the role of microbial communities in health and disease requires a thorough knowledge of the entire analytical process. Using wrong approaches can cost a significant amount of dollars and lengthy process to achieve the desired results. This is <b>PART 1</b> of the practical user guides intended to provide analytical support to the microbiome research community. The entire guide is reproducible, allowing users to easily follow along. If interested, user may use this model to publish their findings in a book format.
