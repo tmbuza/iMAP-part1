@@ -87,7 +87,7 @@ metadata <- sraruntable %>%
 saveRDS(metadata, "RDataRDS/metadata.rds")
 
 save(metadata, file = "RDataRDS/metadata_objects.RData")
-resave(metadata, file = "~/Dropbox/CDILLC/GIT_REPOS/smda-end2end/RDataRDS/saved_objects.RData")
+save(metadata, file = "RDataRDS/saved_objects.RData")
 ```
 
 ## View compact structure

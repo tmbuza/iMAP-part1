@@ -58,7 +58,7 @@ write_tsv(mo_mapping_file, "RDataRDS/mo_mapping_file.tsv")
 saveRDS(mo_mapping_file, "RDataRDS/mo_mapping_file.rds")
 
 save(mo_mapping_file, file = "RDataRDS/mapping_files_objects.RData")
-resave(mo_mapping_file, file = "~/Dropbox/CDILLC/GIT_REPOS/smda-end2end/RDataRDS/saved_objects.RData")
+resave(mo_mapping_file, file = "RDataRDS/saved_objects.RData")
 ```
 
 ## Metadata for `mothur` pipeline
@@ -82,7 +82,7 @@ write_tsv(mo_metadata, "RDataRDS/mo_metadata.tsv")
 saveRDS(mo_metadata, "RDataRDS/mo_metadata.rds")
 
 resave(mo_metadata, file = "RDataRDS/metadata_objects.RData")
-resave(mo_metadata, file = "~/Dropbox/CDILLC/GIT_REPOS/smda-end2end/RDataRDS/saved_objects.RData")
+resave(mo_metadata, file = "RDataRDS/saved_objects.RData")
 ```
 
 ## Mapping file for `qiime` pipeline
@@ -113,7 +113,7 @@ write_tsv(q2_mapping_file, "RDataRDS/q2_mapping_file.tsv")
 saveRDS(q2_mapping_file, "RDataRDS/q2_mapping_file.rds")
 
 save(q2_mapping_file, file = "RDataRDS/mapping_files_objects.RData")
-resave(q2_mapping_file, file = "~/Dropbox/CDILLC/GIT_REPOS/smda-end2end/RDataRDS/saved_objects.RData")
+resave(q2_mapping_file, file = "RDataRDS/saved_objects.RData")
 ```
 
 ## Metadata for `qiime2` pipeline
@@ -137,9 +137,10 @@ write_tsv(q2_metadata, "RDataRDS/q2_metadata.tsv")
 saveRDS(q2_metadata, "RDataRDS/q2_metadata.rds")
 
 resave(q2_metadata, file = "RDataRDS/metadata_objects.RData")
-resave(q2_metadata, file = "~/Dropbox/CDILLC/GIT_REPOS/smda-end2end/RDataRDS/saved_objects.RData")
+resave(q2_metadata, file = "RDataRDS/saved_objects.RData")
 ```
-## Simulated metadata for metagenomics analysis
+
+## Simulated metadata for metagenomics analysis {#synthetic-metadata}
 ```{r}
 source("R/common.R")
 
@@ -161,8 +162,9 @@ write_tsv(m3_metadata, "RDataRDS/m3_metadata.tsv")
 saveRDS(m3_metadata, "RDataRDS/m3_metadata.rds")
 
 resave(m3_metadata, file = "RDataRDS/metadata_objects.RData")
-resave(m3_metadata, file = "~/Dropbox/CDILLC/GIT_REPOS/smda-end2end/RDataRDS/saved_objects.RData")
+resave(m3_metadata, file = "RDataRDS/saved_objects.RData")
 ```
+
 ```{r}
 load("RDataRDS/metadata_objects.RData", verbose = T)
 ```
