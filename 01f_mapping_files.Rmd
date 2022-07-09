@@ -141,7 +141,7 @@ resave(q2_metadata, file = "RDataRDS/saved_objects.RData")
 ```
 
 ## Simulated metadata for metagenomics analysis {#synthetic-metadata}
-```{r}
+```{r eval=FALSE, include=FALSE}
 source("R/common.R")
 
 filepath = "/Volumes/RedSeagate//SYNTHETIC/microbes/data/*.gz"
@@ -152,7 +152,10 @@ m3_metadata <- as.data.frame(Sys.glob(file.path(filepath))) %>%
          sample_id = str_replace_all(sample_id, "\\.fast.*", ""),
          direction = ifelse(str_detect(sample_id, ".*_r1"), "foward", "reverse"), 
          platform = str_replace_all(sample_id, "_.*", ""),)
+```
 
+```{r}
+m3_metadata <- readRDS("RDataRDS/m3_metadata.rds")
 cat("Dimension\n")
 dim(m3_metadata)
 cat("\nStructure\n")
@@ -160,6 +163,8 @@ head(m3_metadata) %>% as.data.frame()
 
 write_tsv(m3_metadata, "RDataRDS/m3_metadata.tsv")
 saveRDS(m3_metadata, "RDataRDS/m3_metadata.rds")
+
+
 
 resave(m3_metadata, file = "RDataRDS/metadata_objects.RData")
 resave(m3_metadata, file = "RDataRDS/saved_objects.RData")
