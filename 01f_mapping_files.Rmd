@@ -73,9 +73,6 @@ mo_metadata <- read_tsv("RDataRDS/mo_mapping_file.tsv", show_col_types = F) %>%
   inner_join(., readRDS("RDataRDS/metadata.rds"), by = "sample_id") %>% 
   select(sample_id, ecosystem, isolate, description)
 
-cat("Dimension\n")
-dim(mo_metadata)
-cat("\nStructure\n")
 head(mo_metadata) %>% as.data.frame() 
 
 write_tsv(mo_metadata, "RDataRDS/mo_metadata.tsv")
@@ -84,6 +81,13 @@ saveRDS(mo_metadata, "RDataRDS/mo_metadata.rds")
 resave(mo_metadata, file = "RDataRDS/metadata_objects.RData")
 resave(mo_metadata, file = "RDataRDS/saved_objects.RData")
 ```
+
+```{r}
+mo_metadata %>% 
+  select(group = sample_id, var1 = isolate) %>% 
+  write_tsv("RDataRDS/var1.design")
+```
+
 
 ## Mapping file for `qiime` pipeline
 
