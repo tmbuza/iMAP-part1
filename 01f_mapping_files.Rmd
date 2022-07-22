@@ -153,9 +153,11 @@ filepath = "/Volumes/RedSeagate//SYNTHETIC/microbes/data/*.gz"
 m3_metadata <- as.data.frame(Sys.glob(file.path(filepath))) %>%
   rename(sample_id = colnames(.)[1]) %>%
   mutate(sample_id = str_replace_all(sample_id, ".*/", ""),
-         sample_id = str_replace_all(sample_id, "\\.fast.*", ""),
-         direction = ifelse(str_detect(sample_id, ".*_r1"), "foward", "reverse"), 
-         platform = str_replace_all(sample_id, "_.*", ""),)
+         sample_id = str_replace_all(sample_id, "\\.fast.*", "")) %>% 
+  mutate(direction = ifelse(str_detect(sample_id, ".*_R1"), "foward", "reverse"), 
+         platform = str_replace_all(sample_id, "_.*", ""))
+
+saveRDS(m3_metadata, "RDataRDS/m3_metadata.rds")
 ```
 
 ```{r}
