@@ -1,6 +1,32 @@
 # (PART) GETTING STARTED {-}
 
-# Basic Software
+# General Framework
+```{r}
+library(DiagrammeR)
+library(DiagrammeRsvg)
+
+mermaid("graph LR
+
+subgraph  
+
+A[<b>MICROBIOME<BR>DATA ANALYSIS</b>] --> B{Basic <BR> Requirements}
+B --> C[Basic Software]
+B --> D[Sample Metadata]
+B --> E[Sequencing Data]
+B --> F[Reference Database]
+B --> J[Mapping Files]
+C --> G[Analysis & Visualization Tools]
+C --> H[Quality Control Tools]
+C --> I[Bioinformatics Pipelines]
+F --> K[Sequence Alignments]
+F --> L[Taxonomy Classifiers]
+end
+", height = 600, width = 600)
+
+```
+
+
+# Analysis Software
 
 ## Install R Environment {#R-environment}
 

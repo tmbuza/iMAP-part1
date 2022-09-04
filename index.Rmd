@@ -9,7 +9,7 @@ output:
   bookdown::bs4_book:
     includes:
       in_header:
-    template: bs4_part1_template.html
+    template: bs4_template.html
 documentclass: book
 classoption: openany #remove empty pages in pdf doc
 colorlinks: true
@@ -32,7 +32,7 @@ description: |
 
 ```{r pkgbiblib, include=FALSE}
 knitr::write_bib(c(
-  .packages(), 'base','bookdown','rmarkdown','tidyverse','shiny','vegan','data.table, dendextend, robCompositions, microbiome, ALDEx2, caret, rms, phyloseq'
+  .packages(), 'base','bookdown','rmarkdown','tidyverse'
 ), 'library/packages.bib')
 ```
 
@@ -41,59 +41,6 @@ source(file = "R/common.R")
 ```
 
 # Getting Started with Microbiome Data Analysis {-#frontpage}
-
-```{r include=FALSE}
-library(DiagrammeR)
-library(DiagrammeRsvg)
-library(rsvg)
-
-# 1. Make a graph
-graph <- DiagrammeR::grViz("
-digraph {
-graph [layout = dot, rankdir = TD]
-
-node [
-shape = box, 
-style = filled, 
-fillcolor = white, 
-fontname = Helvetica,
-penwidth = 2.0] 
-
-edge [arrowhead = diamond]
-
-A [label = 'GETTING STARTED', fillcolor = white, penwidth = 5.0]
-B [label = 'Basic\nRequirements']
-C [label = 'Basic Software']
-D [label = 'Sample Metadata']
-E [label = 'Sequencing Data']
-F [label = 'Reference Database']
-G [label = 'Analysis & Visualization\nTools']
-H [label = 'Quality Control\nTools']
-I [label = 'Bioinformatics\nPipelines']
-J [label = 'Sample & Sequence \nMapping Files', fillcolor = white]
-K [label = 'Sequence\nAlignments']
-L [label = 'Taxonomy\nClassifiers', fillcolor = white]
-
-{A}  -> B
-{B}  -> C
-{B}  -> D
-{B}  -> E
-{B}  -> F
-{B}  -> J #[label = 'Important!']
-{C}  -> G
-{C}  -> H
-{C}  -> I
-{F}  -> K
-{F}  -> L #[label = 'Important!']
-
-}", height = 600, width = 600)
-
-# 2. Convert to SVG, then save as png
-part1_flow = DiagrammeRsvg::export_svg(graph)
-part1_flow = charToRaw(part1_flow) # flatten
-rsvg::rsvg_png(part1_flow, "img/part1_flow.png")
-```
-
 
 <a href=""><img src="img/part1_getting_started.png" alt="Book cover" width="100%" style="padding: 50px 0px 100px 0px; float: right;"/></a>
 
