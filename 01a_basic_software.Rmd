@@ -1,4 +1,4 @@
-# (PART) GETTING STARTED {-}
+# (PART) BASIC REQUIREMENTS {-}
 
 # General Framework
 ```{r}
