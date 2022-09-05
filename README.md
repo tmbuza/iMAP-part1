@@ -2,12 +2,6 @@
 
 # How to Get Started with Microbiome Data Analysis
 
-<br>
-
-![Workflow for getting started with microbiome data analysis.](img/part1_flow.png) 
-
-<br>
-
 The <strong>iMAP-PART1</strong> is one of the <b>practical-user-guide-series</b> for providing analytical support to the microbiome research community. Explore more guides from the table below:
 
 ## Related resources
