@@ -44,9 +44,6 @@ source(file = "R/common.R")
 
 <a href=""><img src="img/part1_getting_started.png" alt="Book cover" width="100%" style="padding: 50px 0px 100px 0px; float: right;"/></a>
 
-## Quick Glimpse {-}
-Investigating the role of microbial communities in health and disease requires a thorough knowledge of the entire analytical process. Using wrong approaches can cost a significant amount of dollars and lengthy process to achieve the desired results. This is <b>PART 1</b> of the practical user guides intended to provide analytical support to the microbiome research community. The entire guide is reproducible, allowing users to easily follow along. If interested, user may use this model to publish their findings in a book format.
-
 ## Structure of this guide {-}
 This guide is divided into chapters to facilitate easy navigation. Each chapter contains several sections as displayed in the navigation bars on the left and right. Click the hyper-linked text if you want to jump into a specific chapter or section.
 
