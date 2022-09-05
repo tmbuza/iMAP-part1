@@ -1,6 +1,6 @@
 ---
 title: "How to Get Started with Microbiome Data Analysis"
-subtitle: "Integrated solutions for better results."
+subtitle: "Integrated solutions for better results"
 author: "<strong>Teresia Mrema Buza</strong>"
 date: "Updated on `r Sys.Date()`"
 site: bookdown::bookdown_site
